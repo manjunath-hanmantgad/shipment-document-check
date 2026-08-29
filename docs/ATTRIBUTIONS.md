@@ -10,13 +10,13 @@ This file records every direct non-original dependency and asset used by Export 
 | React DOM | https://github.com/facebook/react | MIT | 19.1.1 | Browser rendering | Preserve upstream licence through package distribution |
 | Zod | https://github.com/colinhacks/zod | MIT | 4.1.5 | Runtime validation for bundled data and tool inputs | Preserve upstream licence through package distribution |
 | TypeScript | https://github.com/microsoft/TypeScript | Apache-2.0 | 5.9.2 | Static type checking and build | Preserve upstream notice through package distribution |
-| Vite | https://github.com/vitejs/vite | MIT | 7.1.3 | Development server and production bundling | Preserve upstream licence through package distribution |
+| Vite | https://github.com/vitejs/vite | MIT | 7.3.6 | Development server and production bundling | Preserve upstream licence through package distribution |
 | Vite React plugin | https://github.com/vitejs/vite-plugin-react | MIT | 5.0.2 | React JSX transformation | Preserve upstream licence through package distribution |
-| Vitest | https://github.com/vitest-dev/vitest | MIT | 3.2.4 | Unit tests | Preserve upstream licence through package distribution |
+| Vitest | https://github.com/vitest-dev/vitest | MIT | 3.2.6 | Unit tests | Preserve upstream licence through package distribution |
 | Testing Library React | https://github.com/testing-library/react-testing-library | MIT | 16.3.0 | Component tests | Preserve upstream licence through package distribution |
 | Testing Library DOM matchers | https://github.com/testing-library/jest-dom | MIT | 6.8.0 | Browser-oriented assertions | Preserve upstream licence through package distribution |
 | Testing Library User Event | https://github.com/testing-library/user-event | MIT | 14.6.1 | User interaction tests | Preserve upstream licence through package distribution |
-| Playwright Test | https://github.com/microsoft/playwright | Apache-2.0 | 1.55.0 | Chromium end-to-end tests | Preserve upstream notice through package distribution |
+| Playwright Test | https://github.com/microsoft/playwright | Apache-2.0 | 1.55.1 | Chromium end-to-end tests | Preserve upstream notice through package distribution |
 | ESLint | https://github.com/eslint/eslint | MIT | 9.34.0 | Static linting | Preserve upstream licence through package distribution |
 | ESLint JavaScript config | https://github.com/eslint/eslint | MIT | 9.34.0 | Recommended JavaScript lint rules | Preserve upstream licence through package distribution |
 | TypeScript ESLint | https://github.com/typescript-eslint/typescript-eslint | MIT | 8.41.0 | TypeScript lint configuration | Preserve upstream licence through package distribution |
@@ -31,6 +31,8 @@ This file records every direct non-original dependency and asset used by Export 
 No third-party visual asset, logo, font, document template, photograph, illustration, sound, dataset, or real trade document is used.
 
 `docs/submission/assets/devpost-thumbnail.jpg` is an original 3:2 screenshot of this project's fictional, WebMCP-enabled application state. It contains no browser chrome, account information, real shipment data, or third-party media.
+
+The four JPEG images in `docs/screenshots/` are direct captures of the public production application at 1425 × 802 pixels. They show only this project's original interface and fictional shipment data, contain no browser chrome or account information, and were added as public README documentation rather than promotional mockups.
 
 `public/assets/landing/export-preflight-hero.webp` is original AI-generated artwork created specifically for this project's judge-facing landing experience with OpenAI's built-in image-generation capability in Codex. The built-in tool did not expose a model identifier. The final artwork contains fictional, unbranded trade-document forms and port infrastructure; it uses no third-party artwork, characters, logos, flags, company names, or readable text.
 
