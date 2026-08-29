@@ -43,3 +43,72 @@ test("keeps the landing concise and operable at phone width", async ({ page }) =
     .boundingBox();
   expect(resetButton?.height).toBeGreaterThanOrEqual(44);
 });
+
+test("prioritizes the findings queue before the document preview on phones", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const findings = await page.getByLabel("Findings list").boundingBox();
+  const preview = await page.getByLabel(/letter of credit preview/i).boundingBox();
+
+  expect(findings).not.toBeNull();
+  expect(preview).not.toBeNull();
+  expect(findings!.y).toBeLessThan(preview!.y);
+});
+
+test("keeps operational metadata legible with AA text contrast", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  await page
+    .getByRole("button", { name: /beneficiary-name consistency/i })
+    .click();
+  await page.getByRole("button", { name: /stage correction/i }).click();
+
+  const metadata = await page.evaluate(() => {
+    const luminance = (color: string) => {
+      const channels = color
+        .match(/[\d.]+/g)!
+        .slice(0, 3)
+        .map((value) => Number(value) / 255)
+        .map((value) =>
+          value <= 0.03928
+            ? value / 12.92
+            : Math.pow((value + 0.055) / 1.055, 2.4),
+        );
+      return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+    };
+    const contrast = (foreground: string, background: string) => {
+      const lighter = Math.max(luminance(foreground), luminance(background));
+      const darker = Math.min(luminance(foreground), luminance(background));
+      return (lighter + 0.05) / (darker + 0.05);
+    };
+    const inspect = (selector: string, backgroundSelector: string) => {
+      const element = document.querySelector<HTMLElement>(selector)!;
+      const background = element.closest<HTMLElement>(backgroundSelector)!;
+      const elementStyle = getComputedStyle(element);
+      return {
+        contrast: contrast(
+          elementStyle.color,
+          getComputedStyle(background).backgroundColor,
+        ),
+        fontSize: Number.parseFloat(elementStyle.fontSize),
+      };
+    };
+
+    return {
+      sourceLocation: inspect(
+        ".document-field small, .document-field [data-source-location]",
+        ".document-field",
+      ),
+      activityTime: inspect(".activity-list time", ".activity-panel"),
+    };
+  });
+
+  expect(metadata.sourceLocation.contrast).toBeGreaterThanOrEqual(4.5);
+  expect(metadata.sourceLocation.fontSize).toBeGreaterThanOrEqual(12);
+  expect(metadata.activityTime.contrast).toBeGreaterThanOrEqual(4.5);
+  expect(metadata.activityTime.fontSize).toBeGreaterThanOrEqual(12);
+});

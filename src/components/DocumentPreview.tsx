@@ -70,11 +70,20 @@ export function DocumentPreview({
                         <span className="untrusted-label">Untrusted content</span>
                       ) : null}
                     </dt>
-                    <dd>{formatValue(value)}</dd>
-                    <small>{field.sourceLocation}</small>
-                    {overridden ? (
-                      <span className="approved-label">Approved correction</span>
-                    ) : null}
+                    <dd>
+                      <span className="document-field-value">
+                        {formatValue(value)}
+                      </span>
+                      <span
+                        className="document-field-meta"
+                        data-source-location
+                      >
+                        {field.sourceLocation}
+                      </span>
+                      {overridden ? (
+                        <span className="approved-label">Approved correction</span>
+                      ) : null}
+                    </dd>
                   </div>
                 );
               })}

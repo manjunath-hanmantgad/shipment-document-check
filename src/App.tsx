@@ -110,7 +110,9 @@ function App() {
         <p>{state.pack.title}</p>
         <div
           className={`capability ${webMcpAvailable ? "available" : "unavailable"}`}
+          role="status"
           aria-live="polite"
+          aria-atomic="true"
           aria-label="WebMCP capability status"
         >
           <strong>

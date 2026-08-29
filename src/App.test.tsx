@@ -48,6 +48,20 @@ describe("single-screen document resolution workflow", () => {
     expect(screen.queryByText(/OpenAI WebMCP Challenge 2026/i)).not.toBeInTheDocument();
   });
 
+  it("uses a named status region and valid document-field description groups", () => {
+    const { container } = render(<App />);
+
+    expect(
+      screen.getByRole("status", { name: /webmcp capability status/i }),
+    ).toHaveTextContent(/webmcp not available/i);
+
+    for (const field of container.querySelectorAll(".document-field")) {
+      expect(
+        [...field.children].map((child) => child.tagName.toLowerCase()),
+      ).toEqual(["dt", "dd"]);
+    }
+  });
+
   it("completes exporter, external-issuer, and human-judgement paths", async () => {
     const user = userEvent.setup();
     render(<App />);
