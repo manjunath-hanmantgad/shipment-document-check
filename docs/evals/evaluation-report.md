@@ -55,7 +55,7 @@ The current Chrome API documentation was rechecked before testing. The relevant 
 
 The application registration code matches the current producer-side contract: it registers tools on `document.modelContext`, supplies JSON Schema objects, uses the two supported annotations, uses an AbortSignal lifecycle, and returns structured values from `execute`. The WebMCP draft defines the execute callback as `Promise<any>`, so the structured result object used by this challenge app is a permitted return value.
 
-The release deployment is <https://export-document-pack-preflight-publ.vercel.app/>. An anonymous HTTP probe returned `200` with no Vercel authentication redirect. The deployed HTML, JavaScript, CSS, and WebP hero asset matched the locally verified production build byte-for-byte by SHA-256.
+The release deployment is <https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/>. An anonymous HTTP probe returned `200` with no Vercel authentication redirect. The deployed HTML, JavaScript, CSS, and WebP hero asset matched the locally verified production build byte-for-byte by SHA-256.
 
 ChatGPT's in-app browser then exposed the page's native `webmcp` capability and exactly these six tools:
 

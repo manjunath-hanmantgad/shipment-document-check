@@ -43,7 +43,7 @@ The redesigned operational workspace and shared workflow-status fix are on publi
 Verified production URL:
 
 ```text
-https://export-document-pack-preflight-publ.vercel.app/
+https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/
 ```
 
 Observed evidence on 30 August 2026:

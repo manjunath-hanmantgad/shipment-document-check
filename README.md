@@ -2,7 +2,7 @@
 
 **Authority-aware trade-document review, built with native WebMCP.**
 
-[Open the live application](https://export-document-pack-preflight-publ.vercel.app/) · [Review the evaluation evidence](docs/evals/evaluation-report.md) · [Read the MIT licence](LICENSE)
+[Open the live application](https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/) · [Review the evaluation evidence](docs/evals/evaluation-report.md) · [Read the MIT licence](LICENSE)
 
 ![Export Document Pack Preflight landing page](docs/screenshots/landing-page.jpg)
 
@@ -104,7 +104,7 @@ Key implementation boundaries:
 
 ## Try the judge journey
 
-1. Open the [public deployment](https://export-document-pack-preflight-publ.vercel.app/) in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
+1. Open the [public deployment](https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/) in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
 2. Confirm that the page exposes the six tools listed above.
 3. Give the agent this prompt:
 

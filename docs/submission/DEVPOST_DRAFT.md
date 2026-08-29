@@ -4,7 +4,7 @@
 
 **Status:** Draft. The live application and public repository are verified; the public video and final tag remain pending.
 
-**Live URL:** <https://export-document-pack-preflight-publ.vercel.app/>
+**Live URL:** <https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/>
 
 **Public repository:** <https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public>
 
@@ -137,7 +137,7 @@ An exporter-owned draft can receive a staged proposal. A carrier-issued Bill of 
 
 ## Testing instructions
 
-1. Open <https://export-document-pack-preflight-publ.vercel.app/> in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
+1. Open <https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/> in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
 2. Confirm these six tools are available:
 
 ```text

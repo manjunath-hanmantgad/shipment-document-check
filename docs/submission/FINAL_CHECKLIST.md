@@ -45,7 +45,7 @@ A local clean-checkout failure blocks submission until fixed. Hosted CI is usefu
 
 | Check | Status | Evidence |
 |---|---|---|
-| Public no-login live URL exists | verified | Anonymous `200`: `https://export-document-pack-preflight-publ.vercel.app/` |
+| Public no-login live URL exists | verified | Anonymous `200`: `https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/` |
 | ChatGPT in-app browser opens the live URL | verified | Production title and workspace rendered on 2026-08-30 |
 | Native WebMCP environment discovers exactly six tools | verified | Native `webmcp.fetchTools()` returned the approved six-tool surface |
 | Tool schemas are visible and valid | verified | Native production tool descriptions and JSON Schemas were enumerated |
@@ -128,7 +128,7 @@ Script: `docs/submission/DEMO_SCRIPT.md`
 Fill only after verification:
 
 ```text
-Live application: https://export-document-pack-preflight-publ.vercel.app/
+Live application: https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/
 Public repository: https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public
 Public YouTube demo: [T11_VERIFIED_YOUTUBE_URL]
 Submission tag: [T12_FINAL_TAG]
