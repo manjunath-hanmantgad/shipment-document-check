@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Export Document Pack Preflight — Task Tracker</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6f8;
+      --panel: #ffffff;
+      --text: #182230;
+      --muted: #667085;
+      --line: #d8dee8;
+      --accent: #2847c7;
+      --completed: #147a50;
+      --current: #995c00;
+      --pending: #526174;
+      --blocked: #b42318;
+      --deferred: #6941c6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1380px; margin: 0 auto; padding: 24px; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 16px; }
+    h1 { margin: 0 0 6px; font-size: clamp(1.6rem, 3vw, 2.25rem); }
+    p { margin: 0; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      padding: 8px 11px;
+      font-weight: 700;
+    }
+    .button:hover { border-color: #a7b1c1; }
+    .danger { color: var(--blocked); }
+    .grid { display: grid; grid-template-columns: repeat(6, minmax(110px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .card, .panel, .task {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      box-shadow: 0 8px 24px rgba(24, 34, 48, 0.06);
+    }
+    .card { padding: 12px; }
+    .card strong { display: block; font-size: 1.35rem; }
+    .card span { color: var(--muted); font-size: 0.78rem; }
+    .panel { padding: 13px; margin-bottom: 12px; }
+    .progress { height: 10px; margin-top: 8px; overflow: hidden; background: #e8ebf0; border-radius: 999px; }
+    .bar { width: 0; height: 100%; background: var(--completed); }
+    .filters { display: grid; grid-template-columns: minmax(220px, 1fr) 190px 190px; gap: 10px; }
+    label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      padding: 8px;
+    }
+    textarea { min-height: 68px; resize: vertical; }
+    input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid rgba(40, 71, 199, 0.22);
+      outline-offset: 2px;
+    }
+    .list { display: grid; gap: 10px; }
+    .task { overflow: hidden; }
+    .task[data-status="completed"] { border-left: 5px solid var(--completed); }
+    .task[data-status="current"] { border-left: 5px solid var(--current); }
+    .task[data-status="blocked"] { border-left: 5px solid var(--blocked); }
+    summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      cursor: pointer;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .id { display: inline-block; min-width: 52px; color: var(--accent); font-weight: 850; }
+    .title { font-weight: 780; }
+    .meta { margin-top: 3px; color: var(--muted); font-size: 0.78rem; }
+    .right { display: flex; align-items: center; gap: 8px; }
+    .right select { min-width: 142px; padding: 6px; }
+    .badge { padding: 4px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 850; letter-spacing: 0.03em; text-transform: uppercase; }
+    .badge.completed { color: var(--completed); background: #eaf8f1; }
+    .badge.current { color: var(--current); background: #fff2d6; }
+    .badge.pending { color: var(--pending); background: #eef1f5; }
+    .badge.blocked { color: var(--blocked); background: #ffebe9; }
+    .badge.deferred { color: var(--deferred); background: #f2ecff; }
+    .body { border-top: 1px solid var(--line); padding: 12px; }
+    .subtasks { display: grid; gap: 6px; margin-bottom: 12px; }
+    .subtask { display: grid; grid-template-columns: 72px minmax(0, 1fr) 142px; align-items: center; gap: 8px; padding: 8px; border: 1px solid #e7eaf0; border-radius: 8px; background: #fbfcfe; }
+    .subtask-id { color: var(--muted); font-weight: 780; }
+    .empty { padding: 34px; text-align: center; color: var(--muted); }
+    .foot { margin-top: 15px; font-size: 0.78rem; }
+    .hidden { display: none; }
+    @media (max-width: 900px) {
+      header { display: block; }
+      .actions { justify-content: flex-start; margin-top: 12px; }
+      .grid { grid-template-columns: repeat(3, 1fr); }
+      .filters { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .shell { padding: 14px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .filters, summary { grid-template-columns: 1fr; }
+      .right { justify-content: space-between; }
+      .subtask { grid-template-columns: 62px 1fr; }
+      .subtask select { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <h1>Export Document Pack Preflight — Task Tracker</h1>
+        <p>Hardened scope: 13 active tasks, 4 deferred workstreams, one current task. Browser edits persist locally and can be exported.</p>
+      </div>
+      <div class="actions">
+        <button class="button" id="expand">Expand all</button>
+        <button class="button" id="collapse">Collapse all</button>
+        <button class="button" id="copy">Copy summary</button>
+        <button class="button" id="export">Export JSON</button>
+        <button class="button" id="import">Import JSON</button>
+        <button class="button danger" id="reset">Reset baseline</button>
+        <input class="hidden" id="file" type="file" accept="application/json">
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Task summary">
+      <article class="card"><strong id="active-count">0</strong><span>Active tasks</span></article>
+      <article class="card"><strong id="completed-count">0</strong><span>Completed</span></article>
+      <article class="card"><strong id="current-count">0</strong><span>Current</span></article>
+      <article class="card"><strong id="pending-count">0</strong><span>Pending</span></article>
+      <article class="card"><strong id="blocked-count">0</strong><span>Blocked</span></article>
+      <article class="card"><strong id="deferred-count">0</strong><span>Deferred</span></article>
+    </section>
+
+    <section class="panel">
+      <strong id="progress-label">Active completion</strong>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="bar" id="progress-bar"></div>
+      </div>
+    </section>
+
+    <section class="panel filters" aria-label="Filters">
+      <div>
+        <label for="search">Search</label>
+        <input id="search" type="search" placeholder="Task, subtask, ID, or note">
+      </div>
+      <div>
+        <label for="status">Status</label>
+        <select id="status">
+          <option value="all">All statuses</option>
+          <option value="completed">Completed</option>
+          <option value="current">Current</option>
+          <option value="pending">Pending</option>
+          <option value="blocked">Blocked</option>
+          <option value="deferred">Deferred</option>
+        </select>
+      </div>
+      <div>
+        <label for="view">View</label>
+        <select id="view">
+          <option value="all">All work</option>
+          <option value="active">Active scope</option>
+          <option value="unfinished">Unfinished active work</option>
+          <option value="deferred">Deferred only</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="list" id="task-list" aria-live="polite"></section>
+
+    <p class="foot">
+      Completion requires verification and a commit. A blocked item must name its dependency, owner, and unblock condition in CURRENT_PROGRESS.md. Local tracker edits do not alter GitHub; export the state before changing browsers or machines.
+    </p>
+  </main>
+
+  <script src="./task-tracker-data.js"></script>
+  <script>
+    "use strict";
+
+    const STORAGE_KEY = "webmcp-preflight-tracker-v2";
+    const STATUSES = ["completed", "current", "pending", "blocked", "deferred"];
+    const LABELS = {
+      completed: "Completed",
+      current: "Current",
+      pending: "Pending",
+      blocked: "Blocked",
+      deferred: "Deferred"
+    };
+    const BASELINE = window.TASK_TRACKER_BASELINE?.tasks ?? [];
+    const clone = (value) => JSON.parse(JSON.stringify(value));
+    const escapeHtml = (value) => String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+    function normalize(candidate) {
+      if (!Array.isArray(candidate)) {
+        throw new Error("Imported file does not contain a tasks array.");
+      }
+
+      return BASELINE.map((baseTask) => {
+        const incomingTask = candidate.find((item) => item?.id === baseTask.id);
+        const incomingSubtasks = Array.isArray(incomingTask?.subtasks) ? incomingTask.subtasks : [];
+
+        return {
+          ...baseTask,
+          status: STATUSES.includes(incomingTask?.status) ? incomingTask.status : baseTask.status,
+          notes: typeof incomingTask?.notes === "string" ? incomingTask.notes : baseTask.notes,
+          subtasks: baseTask.subtasks.map((baseSubtask) => {
+            const incomingSubtask = incomingSubtasks.find((item) => item?.id === baseSubtask.id);
+            return {
+              ...baseSubtask,
+              status: STATUSES.includes(incomingSubtask?.status)
+                ? incomingSubtask.status
+                : baseSubtask.status
+            };
+          })
+        };
+      });
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        return saved
+          ? { tasks: normalize(saved.tasks), updatedAt: saved.updatedAt ?? null }
+          : { tasks: clone(BASELINE), updatedAt: null };
+      } catch (error) {
+        console.error(error);
+        return { tasks: clone(BASELINE), updatedAt: null };
+      }
+    }
+
+    let state = loadState();
+
+    function persist() {
+      state.updatedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      render();
+    }
+
+    function statusOptions(selected) {
+      return STATUSES.map((status) =>
+        `<option value="${status}" ${status === selected ? "selected" : ""}>${LABELS[status]}</option>`
+      ).join("");
+    }
+
+    function updateSummary() {
+      const counts = Object.fromEntries(STATUSES.map((status) => [status, 0]));
+      state.tasks.forEach((task) => counts[task.status] += 1);
+
+      const activeTasks = state.tasks.filter((task) => task.status !== "deferred");
+      const completedActive = activeTasks.filter((task) => task.status === "completed").length;
+      const percent = activeTasks.length ? Math.round((completedActive / activeTasks.length) * 100) : 0;
+
+      document.getElementById("active-count").textContent = activeTasks.length;
+      STATUSES.forEach((status) => {
+        document.getElementById(`${status}-count`).textContent = counts[status];
+      });
+
+      document.getElementById("progress-label").textContent =
+        `${completedActive} of ${activeTasks.length} active tasks completed · ${percent}%`;
+      document.getElementById("progress-bar").style.width = `${percent}%`;
+      document.querySelector('[role="progressbar"]').setAttribute("aria-valuenow", String(percent));
+    }
+
+    function isVisible(task) {
+      const query = document.getElementById("search").value.trim().toLowerCase();
+      const status = document.getElementById("status").value;
+      const view = document.getElementById("view").value;
+      const searchable = [
+        task.id,
+        task.title,
+        task.notes,
+        ...task.subtasks.flatMap((subtask) => [subtask.id, subtask.title])
+      ].join(" ").toLowerCase();
+
+      if (query && !searchable.includes(query)) return false;
+      if (status !== "all" && task.status !== status) return false;
+      if (view === "active" && task.status === "deferred") return false;
+      if (view === "unfinished" && ["completed", "deferred"].includes(task.status)) return false;
+      if (view === "deferred" && task.status !== "deferred") return false;
+      return true;
+    }
+
+    function taskMarkup(task) {
+      const completedSubtasks = task.subtasks.filter((subtask) => subtask.status === "completed").length;
+      const open = task.status === "current" || task.status === "blocked" || document.getElementById("search").value.trim();
+
+      return `
+        <details class="task" data-status="${task.status}" ${open ? "open" : ""}>
+          <summary>
+            <div>
+              <div><span class="id">${escapeHtml(task.id)}</span><span class="title">${escapeHtml(task.title)}</span></div>
+              <div class="meta">${completedSubtasks} of ${task.subtasks.length} subtasks completed</div>
+            </div>
+            <div class="right" onclick="event.stopPropagation()">
+              <span class="badge ${task.status}">${LABELS[task.status]}</span>
+              <select data-task-status="${escapeHtml(task.id)}" aria-label="${escapeHtml(task.id)} status">
+                ${statusOptions(task.status)}
+              </select>
+            </div>
+          </summary>
+          <div class="body">
+            <div class="subtasks">
+              ${task.subtasks.map((subtask) => `
+                <div class="subtask">
+                  <span class="subtask-id">${escapeHtml(subtask.id)}</span>
+                  <span>${escapeHtml(subtask.title)}</span>
+                  <select data-subtask-status="${escapeHtml(task.id)}|${escapeHtml(subtask.id)}" aria-label="${escapeHtml(subtask.id)} status">
+                    ${statusOptions(subtask.status)}
+                  </select>
+                </div>
+              `).join("")}
+            </div>
+            <label for="notes-${escapeHtml(task.id)}">Notes, blocker, owner, or verification evidence</label>
+            <textarea id="notes-${escapeHtml(task.id)}" data-notes="${escapeHtml(task.id)}" placeholder="Blocked tasks must name the dependency, owner, and unblock condition.">${escapeHtml(task.notes)}</textarea>
+          </div>
+        </details>
+      `;
+    }
+
+    function render() {
+      updateSummary();
+      const visibleTasks = state.tasks.filter(isVisible);
+      document.getElementById("task-list").innerHTML = visibleTasks.length
+        ? visibleTasks.map(taskMarkup).join("")
+        : '<div class="panel empty">No tasks match the current filters.</div>';
+    }
+
+    document.getElementById("task-list").addEventListener("change", (event) => {
+      if (event.target.matches("[data-task-status]")) {
+        const task = state.tasks.find((item) => item.id === event.target.dataset.taskStatus);
+        if (task) {
+          task.status = event.target.value;
+          persist();
+        }
+      }
+
+      if (event.target.matches("[data-subtask-status]")) {
+        const [taskId, subtaskId] = event.target.dataset.subtaskStatus.split("|");
+        const subtask = state.tasks
+          .find((item) => item.id === taskId)
+          ?.subtasks.find((item) => item.id === subtaskId);
+        if (subtask) {
+          subtask.status = event.target.value;
+          persist();
+        }
+      }
+
+      if (event.target.matches("[data-notes]")) {
+        const task = state.tasks.find((item) => item.id === event.target.dataset.notes);
+        if (task) {
+          task.notes = event.target.value.trim();
+          persist();
+        }
+      }
+    });
+
+    ["search", "status", "view"].forEach((id) => {
+      document.getElementById(id).addEventListener(id === "search" ? "input" : "change", render);
+    });
+
+    document.getElementById("expand").addEventListener("click", () => {
+      document.querySelectorAll("details.task").forEach((item) => item.open = true);
+    });
+
+    document.getElementById("collapse").addEventListener("click", () => {
+      document.querySelectorAll("details.task").forEach((item) => item.open = false);
+    });
+
+    document.getElementById("reset").addEventListener("click", () => {
+      if (confirm("Reset all local tracker edits to the version-controlled baseline?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        state = { tasks: clone(BASELINE), updatedAt: null };
+        render();
+      }
+    });
+
+    document.getElementById("export").addEventListener("click", () => {
+      const payload = {
+        version: 2,
+        scopeVersion: window.TASK_TRACKER_BASELINE?.scopeVersion,
+        updatedAt: state.updatedAt ?? new Date().toISOString(),
+        tasks: state.tasks
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `webmcp-task-state-${new Date().toISOString().slice(0, 10)}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("import").addEventListener("click", () => {
+      document.getElementById("file").click();
+    });
+
+    document.getElementById("file").addEventListener("change", async (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      try {
+        const parsed = JSON.parse(await file.text());
+        state = { tasks: normalize(parsed.tasks), updatedAt: new Date().toISOString() };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        render();
+      } catch (error) {
+        alert(`Import failed: ${error.message}`);
+      }
+
+      event.target.value = "";
+    });
+
+    document.getElementById("copy").addEventListener("click", async (event) => {
+      const group = (status) => state.tasks.filter((task) => task.status === status);
+      const text = [
+        "# Tracker Progress Snapshot",
+        `Generated: ${new Date().toISOString()}`,
+        `Completed: ${group("completed").length}`,
+        `Current: ${group("current").length}`,
+        `Pending: ${group("pending").length}`,
+        `Blocked: ${group("blocked").length}`,
+        `Deferred: ${group("deferred").length}`,
+        "",
+        "## Current",
+        ...(group("current").length
+          ? group("current").map((task) => `- ${task.id}: ${task.title}${task.notes ? ` — ${task.notes}` : ""}`)
+          : ["- None"]),
+        "",
+        "## Blocked",
+        ...(group("blocked").length
+          ? group("blocked").map((task) => `- ${task.id}: ${task.title}${task.notes ? ` — ${task.notes}` : ""}`)
+          : ["- None"])
+      ].join("\n");
+
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = event.target.textContent;
+        event.target.textContent = "Copied";
+        setTimeout(() => event.target.textContent = original, 1200);
+      } catch {
+        alert(text);
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
