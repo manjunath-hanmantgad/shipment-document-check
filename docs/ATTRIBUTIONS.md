@@ -32,7 +32,9 @@ No third-party visual asset, logo, font, document template, photograph, illustra
 
 `docs/submission/assets/devpost-thumbnail.jpg` is an original 3:2 screenshot of this project's fictional, WebMCP-enabled application state. It contains no browser chrome, account information, real shipment data, or third-party media.
 
-The four JPEG images in `docs/screenshots/` are direct captures of the public production application at 1425 × 802 pixels. They show only this project's original interface and fictional shipment data, contain no browser chrome or account information, and were added as public README documentation rather than promotional mockups.
+The four JPEG images in `docs/screenshots/` are direct application captures at 1425 × 802 pixels. They show only this project's original interface and fictional shipment data, contain no browser chrome or account information, and were added as public README documentation rather than promotional mockups.
+
+`docs/screenshots/architecture-overview.png`, `docs/submission/ARCHITECTURE.architecture.json`, and `docs/submission/ARCHITECTURE.html` were generated for this project with [Archify](https://github.com/tt-a1i/archify) 2.16 (MIT). Archify was used only as a documentation-authoring tool and is not a runtime or package dependency. The typed source describes the repository's actual client-only components and authority boundaries; no backend or external service was invented for the diagram.
 
 `public/assets/landing/export-preflight-hero.webp` is original AI-generated artwork created specifically for this project's judge-facing landing experience with OpenAI's built-in image-generation capability in Codex. The built-in tool did not expose a model identifier. The final artwork contains fictional, unbranded trade-document forms and port infrastructure; it uses no third-party artwork, characters, logos, flags, company names, or readable text.
 

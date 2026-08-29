@@ -33,7 +33,7 @@ The repository contains focused coverage for these behaviors:
 | Full manual browser journey | `tests/main-journey.spec.ts` | Final state: 7 passes, 2 pending external, 0 open |
 | Browser WebMCP harness | `tests/main-journey.spec.ts` | Six active tools and locked-edit rejection through the registered tool object |
 
-Release-gate totals on 30 August 2026: 55 Vitest unit/component tests and 11 Chromium browser journeys, all passing from merged `main`.
+Release-gate totals on 30 August 2026: 55 Vitest unit/component tests and 12 Chromium browser journeys, all passing from merged `main`.
 
 ## Prompt-injection case
 

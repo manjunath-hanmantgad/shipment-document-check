@@ -89,17 +89,9 @@ After the two exporter corrections and the human decision are confirmed, rerunni
 
 The challenge build is intentionally small and deterministic. It has no backend, account system, analytics, document upload, OCR service, or external messaging integration.
 
-```text
-Fictional shipment pack
-        │
-        ▼
-Nine deterministic rules ──► findings + source evidence
-        │
-        ▼
-Authority-aware reducer ◄── shared actions ──► React workspace
-        ▲                                         ▲
-        └──────── native WebMCP tools ────────────┘
-```
+![Architecture of the Export Document Pack Preflight application](docs/screenshots/architecture-overview.png)
+
+The diagram is generated from the typed [Archify source](docs/submission/ARCHITECTURE.architecture.json). A standalone [interactive light/dark viewer](docs/submission/ARCHITECTURE.html) is included for local use.
 
 Key implementation boundaries:
 
@@ -157,7 +149,7 @@ corepack pnpm@10.15.1 audit
 The latest verified release gate contains:
 
 - **55** Vitest unit and component tests;
-- **11** Chromium end-to-end journeys;
+- **12** Chromium end-to-end journeys;
 - **6** native WebMCP prompt cases executed against the public deployment;
 - **0** known dependency vulnerabilities reported by the package audit.
 

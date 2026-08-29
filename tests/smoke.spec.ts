@@ -44,6 +44,24 @@ test("keeps the landing concise and operable at phone width", async ({ page }) =
   expect(resetButton?.height).toBeGreaterThanOrEqual(44);
 });
 
+test("keeps landing headline emphasis visually unified", async ({ page }) => {
+  await page.goto("/");
+
+  const palette = await page.evaluate(() => {
+    const heading = document.querySelector<HTMLElement>(".landing-hero h1")!;
+    const emphasis = document.querySelector<HTMLElement>(".landing-hero h1 span")!;
+    const headingColor = getComputedStyle(heading).color;
+    const emphasisColor = getComputedStyle(emphasis).color;
+
+    return {
+      headingColor,
+      emphasisColor,
+    };
+  });
+
+  expect(palette.emphasisColor).toBe(palette.headingColor);
+});
+
 for (const viewport of [
   { label: "phone", width: 390, height: 844 },
   { label: "portrait tablet", width: 834, height: 1112 },

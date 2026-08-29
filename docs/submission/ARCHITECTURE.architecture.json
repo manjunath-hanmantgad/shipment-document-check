@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Export Document Pack Preflight",
+    "locale": "en",
+    "output": "ARCHITECTURE.html",
+    "quality_profile": "showcase",
+    "viewBox": [1160, 720]
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [48, 72],
+    "cols": 3,
+    "gapX": 92,
+    "gapY": 96,
+    "cellW": 258,
+    "cellH": 82
+  },
+  "components": [
+    {
+      "id": "humanAgent",
+      "type": "external",
+      "label": "Human + Browser Agent",
+      "sublabel": "One shared, visible journey",
+      "row": 0,
+      "col": 0,
+      "size": [220, 72]
+    },
+    {
+      "id": "reactWorkspace",
+      "type": "frontend",
+      "label": "React Review Workspace",
+      "sublabel": "Evidence, approvals, and activity",
+      "row": 0,
+      "col": 1,
+      "size": [220, 72]
+    },
+    {
+      "id": "approvalGates",
+      "type": "security",
+      "label": "Human Approval Gates",
+      "sublabel": "Approve corrections · confirm decisions",
+      "row": 0,
+      "col": 2,
+      "tag": "VISIBLE ONLY",
+      "size": [220, 72]
+    },
+    {
+      "id": "webmcpRegistry",
+      "type": "frontend",
+      "label": "WebMCP Registry",
+      "sublabel": "document.modelContext.registerTool",
+      "row": 1,
+      "col": 0,
+      "size": [220, 72]
+    },
+    {
+      "id": "toolHandlers",
+      "type": "backend",
+      "label": "Six Tool Handlers",
+      "sublabel": "Read, stage, draft, decide, rerun",
+      "row": 1,
+      "col": 1,
+      "size": [220, 72]
+    },
+    {
+      "id": "authorityReducer",
+      "type": "security",
+      "label": "Authority-aware Reducer",
+      "sublabel": "Shared actions enforce ownership",
+      "row": 1,
+      "col": 2,
+      "tag": "DOCUMENT_LOCKED",
+      "size": [220, 72]
+    },
+    {
+      "id": "fictionalPack",
+      "type": "database",
+      "label": "Fictional Pack Data",
+      "sublabel": "Five local trade documents",
+      "row": 2,
+      "col": 0,
+      "size": [220, 72]
+    },
+    {
+      "id": "preflightRules",
+      "type": "backend",
+      "label": "Nine Deterministic Rules",
+      "sublabel": "Source-grounded consistency checks",
+      "row": 2,
+      "col": 1,
+      "size": [220, 72]
+    },
+    {
+      "id": "workflowStatus",
+      "type": "backend",
+      "label": "Canonical Workflow Status",
+      "sublabel": "Same result for UI and WebMCP",
+      "row": 2,
+      "col": 2,
+      "size": [220, 72]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Browser tab · client-side only",
+      "wraps": [
+        "reactWorkspace",
+        "approvalGates",
+        "webmcpRegistry",
+        "toolHandlers",
+        "authorityReducer",
+        "fictionalPack",
+        "preflightRules",
+        "workflowStatus"
+      ],
+      "pad": 26
+    }
+  ],
+  "connections": [
+    {
+      "id": "sharedJourney",
+      "from": "humanAgent",
+      "to": "reactWorkspace",
+      "label": "inspect and confirm",
+      "variant": "emphasis"
+    },
+    {
+      "id": "registerTools",
+      "from": "reactWorkspace",
+      "to": "webmcpRegistry",
+      "label": "register six tools"
+    },
+    {
+      "id": "invokeTools",
+      "from": "webmcpRegistry",
+      "to": "toolHandlers",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dispatchActions",
+      "from": "toolHandlers",
+      "to": "authorityReducer",
+      "variant": "security"
+    },
+    {
+      "id": "presentApprovals",
+      "from": "reactWorkspace",
+      "to": "approvalGates",
+      "label": "present staged work",
+      "variant": "security"
+    },
+    {
+      "id": "confirmActions",
+      "from": "approvalGates",
+      "to": "authorityReducer",
+      "label": "approve or confirm",
+      "labelDy": 24,
+      "variant": "security"
+    },
+    {
+      "id": "loadPack",
+      "from": "fictionalPack",
+      "to": "preflightRules",
+      "label": "document values"
+    },
+    {
+      "id": "rerunChecks",
+      "from": "authorityReducer",
+      "to": "preflightRules",
+      "label": "rerun approved state"
+    },
+    {
+      "id": "deriveStatus",
+      "from": "preflightRules",
+      "to": "workflowStatus"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "One state model",
+      "items": [
+        "Manual controls and WebMCP tools dispatch the same actions",
+        "Canonical workflow status prevents UI/tool drift"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Authority boundaries",
+      "items": [
+        "Exporter changes stay staged until approval",
+        "Issuer-owned documents remain locked and external requests stay unsent"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Challenge boundary",
+      "items": [
+        "Fictional data and deterministic checks run entirely in the browser",
+        "No backend, account, upload, analytics, or messaging service"
+      ]
+    }
+  ]
+}

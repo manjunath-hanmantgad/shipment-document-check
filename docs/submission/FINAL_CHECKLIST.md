@@ -32,7 +32,7 @@ Do not mark an item verified from memory. Record evidence next to it.
 | `pnpm lint` exits 0 | verified | Fresh merged-`main` run exited 0 on 2026-08-30 |
 | `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on 2026-08-30 |
 | `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on 2026-08-30 |
-| `pnpm test:e2e` exits 0 | verified | 11 Chromium journeys passed on 2026-08-30 |
+| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on 2026-08-30 |
 | Prompt-injection isolation test passes | verified | Included in the 55-test Vitest run on 2026-08-30 |
 | Complete browser journey passes | verified | Automated and native production journeys reached 7/9 with two pending external |
 | Locked WebMCP edit journey passes | verified | Automated and native production calls returned `DOCUMENT_LOCKED` |
