@@ -4,7 +4,7 @@
 **Hard limit:** Under 3 minutes  
 **Audio:** Spoken narration required  
 **Music:** None  
-**Status:** Script ready; recording waits for the verified T10 live URL and native WebMCP journey
+**Status:** Script and verified production/native journey are ready; recording and public YouTube verification remain
 
 ## Demo objective
 

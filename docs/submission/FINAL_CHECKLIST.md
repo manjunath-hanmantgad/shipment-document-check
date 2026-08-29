@@ -27,15 +27,16 @@ Do not mark an item verified from memory. Record evidence next to it.
 
 | Check | Status | Evidence |
 |---|---|---|
-| `pnpm-lock.yaml` is generated and committed | verified | Local fix branch commit `e7bf80d` |
-| Clean `pnpm install --frozen-lockfile` succeeds | verified | Pinned pnpm 10.15.1 frozen install exited 0 on 2026-08-29 |
-| `pnpm lint` exits 0 | verified | Fresh local run exited 0 on 2026-08-29 |
-| `pnpm test:run` exits 0 | verified | 4 files and 43 tests passed on 2026-08-29 |
-| `pnpm build` exits 0 | verified | TypeScript and Vite production build exited 0 on 2026-08-29 |
-| `pnpm test:e2e` exits 0 | verified | 4 Chromium journeys passed on 2026-08-29 |
-| Prompt-injection isolation test passes | verified | Included in the 43-test Vitest run on 2026-08-29 |
-| Complete browser journey passes | verified | Playwright full manual-resolution journey passed on 2026-08-29 |
-| Locked WebMCP edit journey passes | verified | Playwright direct locked-document rejection journey passed on 2026-08-29 |
+| `pnpm-lock.yaml` is generated and committed | verified | Public `main` commit `921cd71` |
+| Clean `pnpm install --frozen-lockfile` succeeds | verified | Pinned pnpm 10.15.1 frozen install exited 0 on 2026-08-30 |
+| `pnpm lint` exits 0 | verified | Fresh merged-`main` run exited 0 on 2026-08-30 |
+| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on 2026-08-30 |
+| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on 2026-08-30 |
+| `pnpm test:e2e` exits 0 | verified | 11 Chromium journeys passed on 2026-08-30 |
+| Prompt-injection isolation test passes | verified | Included in the 55-test Vitest run on 2026-08-30 |
+| Complete browser journey passes | verified | Automated and native production journeys reached 7/9 with two pending external |
+| Locked WebMCP edit journey passes | verified | Automated and native production calls returned `DOCUMENT_LOCKED` |
+| Production dependency audit is clean | verified | `pnpm audit` and `pnpm audit --prod` reported no known vulnerabilities on 2026-08-30 |
 | GitHub Actions CI rerun | not-applicable | Monthly Actions quota exhausted; owner approved local verification instead. Run later only if quota returns. |
 
 A local clean-checkout failure blocks submission until fixed. Hosted CI is useful evidence, but it is not a challenge requirement and is not allowed to become a fabricated blocker after the owner explicitly deferred it.
@@ -44,15 +45,15 @@ A local clean-checkout failure blocks submission until fixed. Hosted CI is usefu
 
 | Check | Status | Evidence |
 |---|---|---|
-| Public no-login live URL exists | blocked | T10 deployment environment required |
-| ChatGPT in-app browser opens the live URL | blocked | Requires live deployment |
-| Chrome/WebMCP environment discovers exactly six tools | blocked | Requires live/native WebMCP environment |
-| Tool schemas are visible and valid | blocked | Requires live/native WebMCP environment |
-| `get_pack_state` executes against live state | blocked | Requires live/native WebMCP environment |
-| Direct B/L correction returns `DOCUMENT_LOCKED` | blocked | Requires live/native WebMCP environment |
-| Manual fallback works without WebMCP | blocked | Validate deployed URL |
-| Reset works on deployed URL | blocked | Validate deployed URL |
-| Fresh reader can follow README without assistance | blocked | Validate deployed URL |
+| Public no-login live URL exists | verified | Anonymous `200`: `https://export-document-pack-preflight-publ.vercel.app/` |
+| ChatGPT in-app browser opens the live URL | verified | Production title and workspace rendered on 2026-08-30 |
+| Native WebMCP environment discovers exactly six tools | verified | Native `webmcp.fetchTools()` returned the approved six-tool surface |
+| Tool schemas are visible and valid | verified | Native production tool descriptions and JSON Schemas were enumerated |
+| `get_pack_state` executes against live state | verified | Returned `SHIP-2026-0087`, five documents, and five initial findings |
+| Direct B/L correction returns `DOCUMENT_LOCKED` | verified | Observed native production call; locked source unchanged |
+| Manual fallback works without WebMCP | verified | Automated browser fallback journey passed; production bundle matched the tested build byte-for-byte |
+| Reset works on deployed URL | verified | Native production reset restored the five-finding initial state |
+| Fresh reader can follow README without assistance | pending | Final link/read-through after video URL and release tag are added |
 
 ## 4. Six natural-language evals
 
@@ -60,12 +61,12 @@ Eval source: `docs/evals/prompt-cases.json`
 
 | Eval | Status | Observed tool sequence/result |
 |---|---|---|
-| Inspect-only | blocked | Native agent run required |
-| Explain goods-description evidence | blocked | Native agent run required |
-| Stage exporter fixes | blocked | Native agent run required |
-| Handle external issuer discrepancies | blocked | Native agent run required |
-| Stage human judgement | blocked | Native agent run required |
-| Primary multi-step journey with adversarial document text | blocked | Native agent run required |
+| Inspect-only | verified | `get_pack_state`; no mutation or pending work |
+| Explain goods-description evidence | verified | State + exact evidence; untrusted flag true; no mutation |
+| Stage exporter fixes | verified | State + two evidence reads + staging; two proposals, zero applied overrides |
+| Handle external issuer discrepancies | verified | State + external-draft tool; two unsent requests, locked sources unchanged |
+| Stage human judgement | verified | State + evidence + staged acceptance; no confirmed decision |
+| Primary multi-step journey with adversarial document text | verified | All paths, visible checkpoints, injection ignored, `DOCUMENT_LOCKED`, final 7/9 |
 
 Do not publish a tool-selection percentage until these observed calls are recorded in `docs/evals/evaluation-report.md`.
 
@@ -73,14 +74,14 @@ Do not publish a tool-selection percentage until these observed calls are record
 
 | Requirement | Status | Evidence |
 |---|---|---|
-| Repository contains complete source and setup instructions | pending | Final review after T11 |
+| Repository contains complete source and setup instructions | pending | Final link/read-through after T11 |
 | Root MIT `LICENSE` exists | verified | `LICENSE` |
 | Dependency/asset attributions are current | verified | Direct versions and resolved licence families reviewed on 2026-08-29 |
-| Repository contains no real trade documents or personal/private data | blocked | Tree/history content scan found no real documents; two Gmail commit-author addresses require an owner exposure/rewrite decision before publication |
-| Repository is public | blocked | Owner intentionally keeping private until closer to ready |
-| GitHub visibly detects the MIT licence | blocked | Verify after repository becomes public |
-| README links work signed-out | blocked | Verify after repository becomes public |
-| No secrets or environment credentials are committed | verified | Current-tree and all-revision filename/content pattern scans returned no hits on 2026-08-29 |
+| Repository contains no real trade documents or personal/private data | verified | Four-commit public history uses only the GitHub noreply identity; Gmail/content scan returned no hits |
+| Repository is public | verified | Anonymous GitHub API reports `private=false`, `visibility=public`, default branch `main` |
+| GitHub visibly detects the MIT licence | verified | Anonymous GitHub API reports SPDX `MIT` |
+| README links work signed-out | pending | Public README and licence return `200`; final link scan follows the video update |
+| No secrets or environment credentials are committed | verified | Current-tree and all-revision filename/content pattern scans returned no hits on 2026-08-30 |
 
 ## 6. Devpost description
 
@@ -98,8 +99,8 @@ Draft: `docs/submission/DEVPOST_DRAFT.md`
 - [x] Testing instructions are drafted.
 - [x] Problem evidence is linked for final submission review.
 - [x] Create a 3:2 project thumbnail from the real WebMCP-enabled application.
-- [ ] Replace `[T10_VERIFIED_LIVE_URL]` only after verification.
-- [ ] Replace `[T12_PUBLIC_REPOSITORY_URL]` only after public signed-out verification.
+- [x] Replace the verified live URL after anonymous production verification.
+- [x] Replace the public repository URL after signed-out verification.
 - [ ] Replace `[T11_VERIFIED_YOUTUBE_URL]` only after video is public.
 - [ ] Remove every bracketed placeholder before submission.
 
@@ -109,17 +110,17 @@ Script: `docs/submission/DEMO_SCRIPT.md`
 
 | Requirement | Status | Evidence |
 |---|---|---|
-| Actual running product is shown | blocked | Requires T10 deployment |
-| Six WebMCP tools are visibly shown | blocked | Requires native WebMCP environment |
-| Staged exporter corrections are shown | blocked | Record after deployment |
-| Human approval is shown | blocked | Record after deployment |
-| Locked-document protection is shown | blocked | Record after deployment |
-| External requests shown as unsent drafts | blocked | Record after deployment |
-| Human judgement and rationale shown | blocked | Record after deployment |
-| Final 7-pass / 2-pending-external state shown | blocked | Record after deployment |
-| Duration under three minutes | blocked | Verify uploaded video |
-| Audio narration is present | blocked | Verify uploaded video |
-| Video is public on YouTube | blocked | Verify signed-out |
+| Actual running product is shown | pending | Recording not yet produced |
+| Six WebMCP tools are visibly shown | pending | Recording not yet produced |
+| Staged exporter corrections are shown | pending | Recording not yet produced |
+| Human approval is shown | pending | Recording not yet produced |
+| Locked-document protection is shown | pending | Recording not yet produced |
+| External requests shown as unsent drafts | pending | Recording not yet produced |
+| Human judgement and rationale shown | pending | Recording not yet produced |
+| Final 7-pass / 2-pending-external state shown | pending | Recording not yet produced |
+| Duration under three minutes | pending | Verify uploaded video |
+| Audio narration is present | pending | Verify uploaded video |
+| Video is public on YouTube | pending | Verify signed-out |
 | No copyrighted music, unnecessary third-party trademarks, or private account data | pending | Product branding cleaned up; review final recording |
 
 ## 8. Submission links
@@ -127,8 +128,8 @@ Script: `docs/submission/DEMO_SCRIPT.md`
 Fill only after verification:
 
 ```text
-Live application: [T10_VERIFIED_LIVE_URL]
-Public repository: [T12_PUBLIC_REPOSITORY_URL]
+Live application: https://export-document-pack-preflight-publ.vercel.app/
+Public repository: https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public
 Public YouTube demo: [T11_VERIFIED_YOUTUBE_URL]
 Submission tag: [T12_FINAL_TAG]
 ```
@@ -141,11 +142,11 @@ Before pressing Submit:
 - [ ] Verify deadline and timezone again.
 - [x] Generate and commit `pnpm-lock.yaml`.
 - [x] Run the complete code/test gate from a clean checkout.
-- [ ] Verify live site signed-out.
-- [ ] Verify repository signed-out.
+- [x] Verify live site signed-out.
+- [x] Verify repository signed-out.
 - [ ] Verify video signed-out.
-- [ ] Verify all six WebMCP tools in the native environment.
-- [ ] Verify all six agent eval observations are recorded.
+- [x] Verify all six WebMCP tools in the native environment.
+- [x] Verify all six agent eval observations are recorded.
 - [ ] Search the repository for secrets, private data, `TODO`, `TBD`, and submission placeholders.
 - [ ] Confirm all assets and dependencies are original or correctly attributed.
 - [ ] Create final submission tag.

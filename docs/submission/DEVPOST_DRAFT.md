@@ -1,9 +1,13 @@
 # Devpost Submission Draft
 
-**Project:** Export Document Pack Preflight  
-**Status:** Draft. Replace bracketed external-artefact placeholders only after verification.  
-**Live URL:** `[T10_VERIFIED_LIVE_URL]`  
-**Public repository:** `[T12_PUBLIC_REPOSITORY_URL]`  
+**Project:** Export Document Pack Preflight
+
+**Status:** Draft. The live application and public repository are verified; the public video and final tag remain pending.
+
+**Live URL:** <https://export-document-pack-preflight-publ.vercel.app/>
+
+**Public repository:** <https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public>
+
 **Public YouTube demo:** `[T11_VERIFIED_YOUTUBE_URL]`
 
 ## Problem
@@ -133,7 +137,7 @@ An exporter-owned draft can receive a staged proposal. A carrier-issued Bill of 
 
 ## Testing instructions
 
-1. Open `[T10_VERIFIED_LIVE_URL]` in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
+1. Open <https://export-document-pack-preflight-publ.vercel.app/> in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
 2. Confirm these six tools are available:
 
 ```text

@@ -1,6 +1,6 @@
 # Export Document Pack Preflight
 
-> **Status:** Scope v2.0 is frozen. The human-confirmation, reproducibility, and judge-facing landing changes are merged and have passed the clean local gate. Public deployment verification, native WebMCP validation, the demo video, and final submission preparation remain open.
+> **Status:** Scope v2.0 is frozen. The redesigned workspace is on public `main`, the anonymous production deployment and native six-tool journey are verified, and the public demo video plus final submission freeze remain open.
 >
 > **Data notice:** Every organisation, person, shipment, document, value, and event in this project is fictional.
 >
@@ -69,7 +69,7 @@ Excluded:
 - bank acceptance guarantees, certification, or professional advice;
 - backend persistence, accounts, multi-tenancy, or external integrations;
 - email, message sending, or bank submission;
-- granular undo, full audit snapshots, downloadable reports, or embedded chat.
+- full audit snapshots, downloadable reports, or embedded chat.
 
 ## Supported workflow
 
@@ -138,7 +138,9 @@ The deterministic test boundary covers:
 - one complete browser journey;
 - one direct locked-document WebMCP rejection journey.
 
-The six natural-language WebMCP eval cases are stored in [`docs/evals/prompt-cases.json`](docs/evals/prompt-cases.json). Evaluation methodology and the remaining native-agent execution gate are documented in [`docs/evals/evaluation-report.md`](docs/evals/evaluation-report.md).
+The release gate currently contains 55 Vitest unit/component tests and 11 Chromium browser journeys. On 30 August 2026 the merged `main` checkout passed the frozen install, lint, all 66 automated tests, production build, full dependency audit, and diff check.
+
+The six natural-language WebMCP eval cases are stored in [`docs/evals/prompt-cases.json`](docs/evals/prompt-cases.json). Their observed native calls, human checkpoints, and final states are documented in [`docs/evals/evaluation-report.md`](docs/evals/evaluation-report.md).
 
 No accuracy, compliance, readiness, tool-selection, or time-saved percentage is published without reproduced evidence.
 
@@ -160,9 +162,9 @@ The demo must visibly show:
 
 Current external artefacts:
 
-- Live application: a candidate deployment exists, but it must be replaced with and verified against the release-candidate commit
-- Public repository: this privacy-sanitized submission snapshot; verify signed-out access before linking it from Devpost
-- Public YouTube demo: waits for the fixed native WebMCP journey
+- Live application: <https://export-document-pack-preflight-publ.vercel.app/>
+- Public repository: <https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public>
+- Public YouTube demo: recording and signed-out verification remain pending
 
 ## Submission materials
 
@@ -199,9 +201,9 @@ Read project state in this order:
 Current task state:
 
 - Completed: `T00`–`T09`
-- Current: `T10` deployment and native WebMCP verification
-- Blocked on `T10`: `T11` final video
-- Pending after verified external artefacts: `T12` freeze
+- Completed: `T10` anonymous deployment and native WebMCP verification
+- Current: `T11` final public demo video
+- Pending after the verified video: `T12` freeze
 - Submission: prohibited until the owner gives a separate explicit instruction
 
 This repository is the privacy-sanitized public submission snapshot. The historical development repository and its review metadata remain private.
