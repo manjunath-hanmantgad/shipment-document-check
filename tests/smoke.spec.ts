@@ -44,19 +44,30 @@ test("keeps the landing concise and operable at phone width", async ({ page }) =
   expect(resetButton?.height).toBeGreaterThanOrEqual(44);
 });
 
-test("prioritizes the findings queue before the document preview on phones", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+for (const viewport of [
+  { label: "phone", width: 390, height: 844 },
+  { label: "portrait tablet", width: 834, height: 1112 },
+  { label: "large tablet", width: 1024, height: 1366 },
+]) {
+  test(`keeps Documents, Findings, then Preview order on ${viewport.label}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
 
-  const findings = await page.getByLabel("Findings list").boundingBox();
-  const preview = await page.getByLabel(/letter of credit preview/i).boundingBox();
+    const documents = await page.getByLabel("Shipment documents").boundingBox();
+    const findings = await page.getByLabel("Findings list").boundingBox();
+    const preview = await page
+      .getByLabel(/letter of credit preview/i)
+      .boundingBox();
 
-  expect(findings).not.toBeNull();
-  expect(preview).not.toBeNull();
-  expect(findings!.y).toBeLessThan(preview!.y);
-});
+    expect(documents).not.toBeNull();
+    expect(findings).not.toBeNull();
+    expect(preview).not.toBeNull();
+    expect(documents!.y).toBeLessThan(findings!.y);
+    expect(findings!.y).toBeLessThan(preview!.y);
+  });
+}
 
 test("keeps operational metadata legible with AA text contrast", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

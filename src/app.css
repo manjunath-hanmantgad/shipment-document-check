@@ -596,7 +596,22 @@
   font-size: 0.75rem;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 1024px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .document-panel,
+  .finding-panel {
+    position: static;
+    max-height: none;
+  }
+
+  .document-list,
+  .finding-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .document-panel {
     order: 1;
   }
@@ -613,5 +628,10 @@
 @media (max-width: 540px) {
   .app-header h2 {
     font-size: 2.05rem;
+  }
+
+  .document-list,
+  .finding-list {
+    grid-template-columns: 1fr;
   }
 }
