@@ -60,6 +60,11 @@ describe("single-screen document resolution workflow", () => {
         [...field.children].map((child) => child.tagName.toLowerCase()),
       ).toEqual(["dt", "dd"]);
     }
+
+    expect(
+      screen.getByRole("group", { name: /4 passing of 9 checks/i }),
+    ).toBeVisible();
+    expect(screen.getByRole("group", { name: /5 open/i })).toBeVisible();
   });
 
   it("completes exporter, external-issuer, and human-judgement paths", async () => {
@@ -139,6 +144,129 @@ describe("single-screen document resolution workflow", () => {
     expect(screen.getByLabelText(/findings list/i)).toHaveTextContent(
       /5 open findings/i,
     );
+  });
+
+  it("marks an approved correction as awaiting verification and allows undo", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(
+      screen.getByRole("button", { name: /beneficiary-name consistency/i }),
+    );
+    await user.click(screen.getByRole("button", { name: /stage correction/i }));
+    await user.click(screen.getByRole("button", { name: /approve correction/i }));
+
+    expect(screen.getByLabelText(/1 verification pending/i)).toBeVisible();
+    expect(screen.getByLabelText(/4 open/i)).toBeVisible();
+    expect(screen.getByText(/approved — verification pending/i)).toBeVisible();
+
+    await user.click(screen.getByRole("button", { name: /undo correction/i }));
+
+    expect(screen.getByLabelText(/0 verification pending/i)).toBeVisible();
+    expect(screen.getByLabelText(/5 open/i)).toBeVisible();
+    expect(screen.queryByText(/approved — verification pending/i)).not.toBeInTheDocument();
+  });
+
+  it("counts a confirmed human decision as verification pending until rerun", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(
+      screen.getByRole("button", { name: /goods-description review/i }),
+    );
+    await user.click(
+      screen.getByRole("radio", { name: /accept wording difference/i }),
+    );
+    await user.type(
+      screen.getByLabelText(/rationale/i),
+      "The product, grade, quantity and packing are equivalent.",
+    );
+    await user.click(screen.getByRole("button", { name: /stage decision/i }));
+    await user.click(screen.getByRole("button", { name: /confirm decision/i }));
+
+    expect(screen.getByLabelText(/1 verification pending/i)).toBeVisible();
+    expect(screen.getByLabelText(/4 open/i)).toBeVisible();
+    expect(
+      screen.getByText(/decision confirmed — verification pending/i),
+    ).toBeVisible();
+  });
+
+  it("returns a still-failing exporter correction to an open resolution form after rerun", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(
+      screen.getByRole("button", { name: /beneficiary-name consistency/i }),
+    );
+    const proposedValue = screen.getByLabelText(/proposed value/i);
+    await user.clear(proposedValue);
+    await user.type(proposedValue, "Still Incorrect Exporter Name");
+    await user.click(screen.getByRole("button", { name: /stage correction/i }));
+    await user.click(screen.getByRole("button", { name: /approve correction/i }));
+    await user.click(screen.getByRole("button", { name: /rerun preflight/i }));
+
+    expect(screen.getByLabelText(/0 verification pending/i)).toBeVisible();
+    expect(screen.getByLabelText(/5 open/i)).toBeVisible();
+    expect(
+      screen.queryByText(/approved — verification pending/i),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /stage correction/i })).toBeVisible();
+  });
+
+  it("shows a rejected human decision as reviewed rather than verification pending after rerun", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(
+      screen.getByRole("button", { name: /goods-description review/i }),
+    );
+    await user.click(
+      screen.getByRole("radio", { name: /reject wording difference/i }),
+    );
+    await user.type(
+      screen.getByLabelText(/rationale/i),
+      "The wording is not acceptable for this presentation.",
+    );
+    await user.click(screen.getByRole("button", { name: /stage decision/i }));
+    await user.click(screen.getByRole("button", { name: /confirm decision/i }));
+    await user.click(screen.getByRole("button", { name: /rerun preflight/i }));
+    await user.click(
+      screen.getByRole("button", { name: /goods-description review/i }),
+    );
+
+    expect(screen.getByText("Human review recorded")).toBeVisible();
+    expect(screen.getByText(/human decision: reject/i)).toBeVisible();
+    expect(
+      screen.queryByText(/decision confirmed — verification pending/i),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows an escalated human decision as open follow-up after rerun", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(
+      screen.getByRole("button", { name: /goods-description review/i }),
+    );
+    await user.click(
+      screen.getByRole("radio", { name: /escalate for specialist review/i }),
+    );
+    await user.type(
+      screen.getByLabelText(/rationale/i),
+      "A trade specialist must make the final determination.",
+    );
+    await user.click(screen.getByRole("button", { name: /stage decision/i }));
+    await user.click(screen.getByRole("button", { name: /confirm decision/i }));
+    await user.click(screen.getByRole("button", { name: /rerun preflight/i }));
+    await user.click(
+      screen.getByRole("button", { name: /goods-description review/i }),
+    );
+
+    expect(screen.getByText("Escalated for human follow-up")).toBeVisible();
+    expect(screen.getByText(/human decision: escalate/i)).toBeVisible();
+    expect(
+      screen.queryByText(/decision confirmed — verification pending/i),
+    ).not.toBeInTheDocument();
   });
 
   it("registers exactly the six approved tools when WebMCP is available", () => {

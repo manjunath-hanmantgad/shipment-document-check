@@ -3,6 +3,7 @@ import type { ChangeEvent, FormEvent } from "react";
 import { getDocumentById, getFieldById } from "../domain/case";
 import type { AppAction, AppState } from "../domain/actions";
 import type { FieldValue, Finding, HumanResolution } from "../domain/types";
+import { workflowStatusCodeForFinding } from "../domain/workflow";
 
 interface ResolutionPanelProps {
   state: AppState;
@@ -71,6 +72,7 @@ export function ResolutionPanel({
       state.resolutions.fieldOverrides,
       targetField.id,
     );
+  const workflowStatus = workflowStatusCodeForFinding(state, finding);
 
   return (
     <section
@@ -138,9 +140,38 @@ export function ResolutionPanel({
                 </button>
               </div>
             </article>
-          ) : fieldOverridden ? (
-            <div className="success-message">
-              Approved correction applied. Rerun the preflight to refresh findings.
+          ) : fieldOverridden && workflowStatus === "verification_pending" ? (
+            <div className="verification-message" role="status">
+              <div>
+                <strong>Approved — verification pending</strong>
+                <span>
+                  The correction is applied. Rerun the deterministic checks to
+                  verify this finding.
+                </span>
+              </div>
+              <div className="button-row">
+                <button
+                  type="button"
+                  className="button primary"
+                  onClick={() =>
+                    dispatch({ type: "rerun_preflight", actor: "human" })
+                  }
+                >
+                  Verify approved change
+                </button>
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() =>
+                    dispatch({
+                      type: "undo_exporter_correction",
+                      findingId: finding.id,
+                    })
+                  }
+                >
+                  Undo correction
+                </button>
+              </div>
             </div>
           ) : (
             <form
@@ -205,6 +236,29 @@ export function ResolutionPanel({
                 </div>
               </dl>
               <pre>{externalRequest.body}</pre>
+              <div className="button-row request-actions">
+                <button
+                  type="button"
+                  className="button primary"
+                  onClick={() =>
+                    dispatch({ type: "rerun_preflight", actor: "human" })
+                  }
+                >
+                  Update preflight status
+                </button>
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() =>
+                    dispatch({
+                      type: "discard_external_request",
+                      findingId: finding.id,
+                    })
+                  }
+                >
+                  Discard draft
+                </button>
+              </div>
             </article>
           ) : (
             <button
@@ -246,23 +300,66 @@ export function ResolutionPanel({
                   <dd>{stagedDecision.rationale}</dd>
                 </div>
               </dl>
+              <div className="button-row">
+                <button
+                  type="button"
+                  className="button primary"
+                  onClick={() =>
+                    dispatch({
+                      type: "confirm_human_decision",
+                      findingId: finding.id,
+                    })
+                  }
+                >
+                  Confirm decision
+                </button>
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() =>
+                    dispatch({
+                      type: "cancel_human_decision",
+                      findingId: finding.id,
+                    })
+                  }
+                >
+                  Edit decision
+                </button>
+              </div>
+            </article>
+          ) : confirmedDecision && workflowStatus === "verification_pending" ? (
+            <div className="verification-message" role="status">
+              <div>
+                <strong>Decision confirmed — verification pending</strong>
+                <span>
+                  Human decision: {confirmedDecision.decision}. Rerun the checks to
+                  apply the review outcome.
+                </span>
+              </div>
               <button
                 type="button"
                 className="button primary"
                 onClick={() =>
-                  dispatch({
-                    type: "confirm_human_decision",
-                    findingId: finding.id,
-                  })
+                  dispatch({ type: "rerun_preflight", actor: "human" })
                 }
               >
-                Confirm decision
+                Verify human decision
               </button>
-            </article>
+            </div>
           ) : confirmedDecision ? (
-            <div className="success-message">
-              Human decision confirmed: {confirmedDecision.decision}. Rerun the
-              preflight to apply the review outcome.
+            <div className="success-message resolution-outcome" role="status">
+              <strong>
+                {confirmedDecision.decision === "escalate"
+                  ? "Escalated for human follow-up"
+                  : "Human review recorded"}
+              </strong>
+              <span>
+                Human decision: {confirmedDecision.decision}.{
+                  confirmedDecision.decision === "escalate"
+                    ? " This finding remains open for specialist review."
+                    : " The finding remains unresolved after the latest preflight."
+                }
+              </span>
             </div>
           ) : (
             <form

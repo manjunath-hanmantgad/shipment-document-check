@@ -116,6 +116,40 @@ test("completes the full manual resolution journey and reset", async ({ page }) 
   await expect(page.getByLabel(/findings list/i)).toContainText("5 open findings");
 });
 
+test("keeps staged work reversible until verification", async ({ page }) => {
+  await page.goto("/");
+
+  await page
+    .getByRole("button", { name: /beneficiary-name consistency/i })
+    .click();
+  await page.getByRole("button", { name: /stage correction/i }).click();
+  await page.getByRole("button", { name: /approve correction/i }).click();
+
+  await expect(page.getByLabel(/1 verification pending/i)).toBeVisible();
+  await expect(page.getByText(/approved — verification pending/i)).toBeVisible();
+  await page.getByRole("button", { name: /undo correction/i }).click();
+  await expect(page.getByLabel(/0 verification pending/i)).toBeVisible();
+  await expect(page.getByLabel(/5 open/i)).toBeVisible();
+
+  await page
+    .getByRole("button", { name: /port-of-discharge consistency/i })
+    .click();
+  await page.getByRole("button", { name: /draft carrier request/i }).click();
+  await expect(page.getByText("Unsent draft", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: /discard draft/i }).click();
+  await expect(page.getByRole("button", { name: /draft carrier request/i })).toBeVisible();
+
+  await page.getByRole("button", { name: /goods-description review/i }).click();
+  await page.getByLabel(/rationale/i).fill("Equivalent product and packing confirmed.");
+  await page.getByRole("button", { name: /stage decision/i }).click();
+  await expect(page.getByText("Awaiting human confirmation")).toBeVisible();
+  await page.getByRole("button", { name: /edit decision/i }).click();
+  await expect(page.getByRole("button", { name: /stage decision/i })).toBeVisible();
+  await expect(page.getByLabel(/rationale/i)).toHaveValue(
+    "Equivalent product and packing confirmed.",
+  );
+});
+
 test("surfaces and confirms a WebMCP-staged human decision", async ({ page }) => {
   await installWebMcpHarness(page);
   await page.goto("/");
@@ -148,8 +182,11 @@ test("surfaces and confirms a WebMCP-staged human decision", async ({ page }) =>
   await expect(page.getByText("Awaiting human confirmation")).toBeVisible();
   await page.getByRole("button", { name: "Confirm decision" }).click();
   await expect(
-    page.getByText(/human decision confirmed: accept/i),
+    page.getByText(/decision confirmed — verification pending/i),
   ).toBeVisible();
+  await expect(page.getByText(/human decision: accept/i)).toBeVisible();
+  await expect(page.getByLabel(/1 verification pending/i)).toBeVisible();
+  await expect(page.getByLabel(/4 open/i)).toBeVisible();
 
   const afterConfirmation = readToolPayload(
     await executeWebMcpTool(page, "get_pack_state", {}),
@@ -159,7 +196,7 @@ test("surfaces and confirms a WebMCP-staged human decision", async ({ page }) =>
       findings: expect.arrayContaining([
         expect.objectContaining({
           id: "finding:goods-description",
-          workflowStatus: "human_reviewed",
+          workflowStatus: "verification_pending",
         }),
       ]),
       hasUnrunChanges: true,

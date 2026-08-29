@@ -369,6 +369,38 @@ function rejectExporterCorrection(
   });
 }
 
+function hasAppliedResolutions(resolutions: ResolutionState): boolean {
+  return (
+    Object.keys(resolutions.fieldOverrides).length > 0 ||
+    resolutions.externalRequestFindingIds.length > 0 ||
+    Object.keys(resolutions.humanDecisions).length > 0
+  );
+}
+
+function undoExporterCorrection(state: AppState, findingId: string): AppState {
+  const authority = assertExporterEditable(state, findingId);
+  if (!authority.ok) return withError(state, authority.error);
+
+  const fieldId = authority.value.targetFieldId;
+  if (!Object.prototype.hasOwnProperty.call(state.resolutions.fieldOverrides, fieldId)) {
+    return withError(
+      state,
+      error("ACTION_NOT_AVAILABLE", "This correction is not awaiting verification.", {
+        findingId,
+      }),
+    );
+  }
+
+  const fieldOverrides = { ...state.resolutions.fieldOverrides };
+  delete fieldOverrides[fieldId];
+  const resolutions = { ...state.resolutions, fieldOverrides };
+
+  return withActivity(state, "human", "Human undid an approved exporter correction.", {
+    resolutions,
+    hasUnrunChanges: hasAppliedResolutions(resolutions),
+  });
+}
+
 function requestBody(state: AppState, finding: ExternalIssuerFinding): string {
   const document = getDocumentById(state.pack, finding.targetDocumentId);
   const evidence = finding.sources
@@ -448,6 +480,33 @@ function draftExternalRequests(
   );
 }
 
+function discardExternalRequest(state: AppState, findingId: string): AppState {
+  const request = state.externalRequests.find((item) => item.findingId === findingId);
+  if (!request) {
+    return withError(
+      state,
+      error("ACTION_NOT_AVAILABLE", "No unsent external request is available to discard.", {
+        findingId,
+      }),
+    );
+  }
+
+  const resolutions = {
+    ...state.resolutions,
+    externalRequestFindingIds: state.resolutions.externalRequestFindingIds.filter(
+      (item) => item !== findingId,
+    ),
+  };
+
+  return withActivity(state, "human", "Human discarded an unsent external request.", {
+    externalRequests: state.externalRequests.filter(
+      (item) => item.findingId !== findingId,
+    ),
+    resolutions,
+    hasUnrunChanges: hasAppliedResolutions(resolutions),
+  });
+}
+
 function stageHumanDecision(
   state: AppState,
   action: Extract<AppAction, { type: "stage_human_decision" }>,
@@ -522,6 +581,24 @@ function confirmHumanDecision(state: AppState, findingId: string): AppState {
   });
 }
 
+function cancelHumanDecision(state: AppState, findingId: string): AppState {
+  if (!state.stagedHumanDecisions[findingId]) {
+    return withError(
+      state,
+      error("ACTION_NOT_AVAILABLE", "No human decision is awaiting confirmation.", {
+        findingId,
+      }),
+    );
+  }
+
+  const stagedHumanDecisions = { ...state.stagedHumanDecisions };
+  delete stagedHumanDecisions[findingId];
+
+  return withActivity(state, "human", "Human cancelled a staged review decision.", {
+    stagedHumanDecisions,
+  });
+}
+
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case "select_document": {
@@ -557,12 +634,18 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return approveExporterCorrection(state, action.proposalId);
     case "reject_exporter_correction":
       return rejectExporterCorrection(state, action.proposalId);
+    case "undo_exporter_correction":
+      return undoExporterCorrection(state, action.findingId);
     case "draft_external_requests":
       return draftExternalRequests(state, action);
+    case "discard_external_request":
+      return discardExternalRequest(state, action.findingId);
     case "stage_human_decision":
       return stageHumanDecision(state, action);
     case "confirm_human_decision":
       return confirmHumanDecision(state, action.findingId);
+    case "cancel_human_decision":
+      return cancelHumanDecision(state, action.findingId);
     case "rerun_preflight": {
       const preflight = runPreflight(state.pack, state.resolutions);
       return withActivity(

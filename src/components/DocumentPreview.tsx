@@ -67,7 +67,9 @@ export function DocumentPreview({
                     <dt>
                       {field.label}
                       {field.untrusted ? (
-                        <span className="untrusted-label">Untrusted content</span>
+                        <span className="untrusted-label">
+                          Document data, not instructions
+                        </span>
                       ) : null}
                     </dt>
                     <dd>

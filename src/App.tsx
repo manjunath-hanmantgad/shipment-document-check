@@ -67,6 +67,7 @@ function App() {
         id="workspace-demo"
         className="application"
         aria-labelledby="application-title"
+        tabIndex={-1}
       >
       <header className="app-header">
         <div>
@@ -128,13 +129,18 @@ function App() {
 
       <PreflightSummary state={state} />
 
-      <section className="workspace" aria-label="Document review workspace">
-        <DocumentList
-          documents={state.pack.documents}
-          selectedDocumentId={state.selectedDocumentId}
-          onSelect={(documentId) =>
-            dispatch({ type: "select_document", documentId })
-          }
+      <section className="review-flow" aria-label="Document review workspace">
+        <FindingList
+          state={state}
+          selectedFindingId={state.selectedFindingId}
+          onSelect={selectFinding}
+        />
+        <EvidencePanel finding={selectedFinding} />
+        <ResolutionPanel
+          key={selectedFinding?.id ?? "no-finding"}
+          state={state}
+          finding={selectedFinding}
+          dispatch={dispatch}
         />
         <DocumentPreview
           document={selectedDocument}
@@ -143,20 +149,12 @@ function App() {
             selectedFinding?.sources.map((item) => item.fieldId) ?? []
           }
         />
-        <FindingList
-          state={state}
-          selectedFindingId={state.selectedFindingId}
-          onSelect={selectFinding}
-        />
-      </section>
-
-      <section className="detail-grid">
-        <EvidencePanel finding={selectedFinding} />
-        <ResolutionPanel
-          key={selectedFinding?.id ?? "no-finding"}
-          state={state}
-          finding={selectedFinding}
-          dispatch={dispatch}
+        <DocumentList
+          documents={state.pack.documents}
+          selectedDocumentId={state.selectedDocumentId}
+          onSelect={(documentId) =>
+            dispatch({ type: "select_document", documentId })
+          }
         />
       </section>
 

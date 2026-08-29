@@ -136,6 +136,37 @@ describe("WebMCP tools", () => {
     );
   });
 
+  it("reports an approved exporter correction as verification pending before rerun", async () => {
+    const harness = createHarness();
+
+    await getTool(harness.context, "stage_exporter_corrections").execute({
+      corrections: [
+        {
+          findingId: "finding:beneficiary-name",
+          proposedValue: "Sahyadri Botanics Private Limited",
+        },
+      ],
+    });
+    harness.context.dispatch({
+      type: "approve_exporter_correction",
+      proposalId: "proposal:finding:beneficiary-name",
+    });
+
+    const result = await getTool(harness.context, "get_pack_state").execute({});
+
+    expect(readPayload(result)).toEqual(
+      expect.objectContaining({
+        hasUnrunChanges: true,
+        findings: expect.arrayContaining([
+          expect.objectContaining({
+            id: "finding:beneficiary-name",
+            workflowStatus: "verification_pending",
+          }),
+        ]),
+      }),
+    );
+  });
+
   it("rejects an exporter correction against a locked document", async () => {
     const harness = createHarness();
 
@@ -199,6 +230,34 @@ describe("WebMCP tools", () => {
     expect(
       harness.getState().resolutions.humanDecisions["finding:goods-description"],
     ).toBeUndefined();
+  });
+
+  it("reports a confirmed human decision as verification pending before rerun", async () => {
+    const harness = createHarness();
+
+    await getTool(harness.context, "stage_human_decision").execute({
+      findingId: "finding:goods-description",
+      decision: "accept",
+      rationale: "The product, grade, quantity and packing are equivalent.",
+    });
+    harness.context.dispatch({
+      type: "confirm_human_decision",
+      findingId: "finding:goods-description",
+    });
+
+    const result = await getTool(harness.context, "get_pack_state").execute({});
+
+    expect(readPayload(result)).toEqual(
+      expect.objectContaining({
+        hasUnrunChanges: true,
+        findings: expect.arrayContaining([
+          expect.objectContaining({
+            id: "finding:goods-description",
+            workflowStatus: "verification_pending",
+          }),
+        ]),
+      }),
+    );
   });
 
   it("reruns the deterministic preflight through the shared action", async () => {

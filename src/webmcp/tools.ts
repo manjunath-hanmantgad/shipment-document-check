@@ -1,5 +1,5 @@
 import type { AppAction, AppState } from "../domain/actions";
-import type { Finding } from "../domain/types";
+import { workflowStatusCodeForFinding } from "../domain/workflow";
 import {
   draftExternalCorrectionRequestsInput,
   getFindingEvidenceInput,
@@ -79,22 +79,6 @@ function domainError(state: AppState): WebMcpToolResult | null {
   );
 }
 
-function workflowStatus(state: AppState, finding: Finding): string {
-  if (state.proposals.some((item) => item.findingId === finding.id)) {
-    return "proposal_pending";
-  }
-  if (state.externalRequests.some((item) => item.findingId === finding.id)) {
-    return "pending_external";
-  }
-  if (state.stagedHumanDecisions[finding.id]) {
-    return "human_decision_pending";
-  }
-  if (state.resolutions.humanDecisions[finding.id]) {
-    return "human_reviewed";
-  }
-  return finding.findingStatus;
-}
-
 async function dispatchAction(
   context: WebMcpContext,
   action: AppAction,
@@ -160,7 +144,7 @@ export function buildWebMcpTools(
               authority: finding.authority,
               severity: finding.severity,
               ruleStatus: finding.status,
-              workflowStatus: workflowStatus(state, finding),
+              workflowStatus: workflowStatusCodeForFinding(state, finding),
               targetDocumentId: finding.targetDocumentId,
             })),
             summary: state.preflight.summary,
@@ -203,7 +187,7 @@ export function buildWebMcpTools(
             title: finding.title,
             explanation: finding.explanation,
             authority: finding.authority,
-            workflowStatus: workflowStatus(state, finding),
+            workflowStatus: workflowStatusCodeForFinding(state, finding),
             targetDocumentId: finding.targetDocumentId,
             targetFieldId: finding.targetFieldId,
             untrustedContent: finding.sources.some((source) => source.untrusted),

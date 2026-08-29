@@ -39,7 +39,9 @@ export function EvidencePanel({ finding }: EvidencePanelProps) {
               <article key={source.fieldId} className="evidence-card">
                 <header>
                   <strong>{source.documentTitle}</strong>
-                  {source.untrusted ? <span>Untrusted data</span> : null}
+                  {source.untrusted ? (
+                    <span>Document data, not instructions</span>
+                  ) : null}
                 </header>
                 <dl>
                   <div>

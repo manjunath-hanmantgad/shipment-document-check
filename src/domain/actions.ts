@@ -103,11 +103,13 @@ export type AppAction =
     }
   | { type: "approve_exporter_correction"; proposalId: string }
   | { type: "reject_exporter_correction"; proposalId: string }
+  | { type: "undo_exporter_correction"; findingId: string }
   | {
       type: "draft_external_requests";
       findingIds: string[];
       actor: Exclude<Actor, "system">;
     }
+  | { type: "discard_external_request"; findingId: string }
   | {
       type: "stage_human_decision";
       findingId: string;
@@ -116,6 +118,7 @@ export type AppAction =
       actor: Exclude<Actor, "system">;
     }
   | { type: "confirm_human_decision"; findingId: string }
+  | { type: "cancel_human_decision"; findingId: string }
   | { type: "rerun_preflight"; actor: Exclude<Actor, "system"> }
   | { type: "reset_case" };
 

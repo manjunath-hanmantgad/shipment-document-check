@@ -1,5 +1,5 @@
 import type { AppState } from "../domain/actions";
-import type { Finding } from "../domain/types";
+import { workflowCount, workflowStatusForFinding } from "../domain/workflow";
 
 interface FindingListProps {
   state: AppState;
@@ -7,39 +7,19 @@ interface FindingListProps {
   onSelect: (findingId: string) => void;
 }
 
-function statusFor(state: AppState, finding: Finding): string {
-  if (state.proposals.some((item) => item.findingId === finding.id)) {
-    return "Proposal pending";
-  }
-  if (state.externalRequests.some((item) => item.findingId === finding.id)) {
-    return "Pending external";
-  }
-  if (state.stagedHumanDecisions[finding.id]) {
-    return "Decision pending";
-  }
-  if (state.resolutions.humanDecisions[finding.id]) {
-    return "Human reviewed";
-  }
-  if (finding.findingStatus === "pending_external") return "Pending external";
-  if (finding.findingStatus === "human_reviewed") return "Human reviewed";
-  return "Open";
-}
-
 export function FindingList({
   state,
   selectedFindingId,
   onSelect,
 }: FindingListProps) {
-  const openCount = state.preflight.findings.filter(
-    (finding) => statusFor(state, finding) === "Open",
-  ).length;
+  const openCount = workflowCount(state, "Open");
 
   return (
     <section className="panel finding-panel" aria-label="Findings list">
       <div className="panel-heading">
         <div>
-          <p className="section-kicker">Preflight issues</p>
-          <h2>Findings</h2>
+          <p className="section-kicker">Current work</p>
+          <h2>Review queue</h2>
           <p className="panel-subtitle">
             {openCount} open finding{openCount === 1 ? "" : "s"}
           </p>
@@ -53,7 +33,7 @@ export function FindingList({
         ) : (
           state.preflight.findings.map((finding) => {
             const selected = finding.id === selectedFindingId;
-            const status = statusFor(state, finding);
+            const status = workflowStatusForFinding(state, finding);
             return (
               <button
                 key={finding.id}

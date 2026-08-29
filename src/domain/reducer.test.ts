@@ -56,6 +56,32 @@ describe("authority-aware exporter corrections", () => {
     expect(approved.hasUnrunChanges).toBe(true);
   });
 
+  it("undoes an approved exporter correction before verification", () => {
+    const staged = reduce({
+      type: "stage_exporter_corrections",
+      corrections: [
+        {
+          findingId: "finding:beneficiary-name",
+          proposedValue: "Sahyadri Botanics Private Limited",
+        },
+      ],
+      actor: "human",
+    });
+    const approved = appReducer(staged, {
+      type: "approve_exporter_correction",
+      proposalId: staged.proposals[0].id,
+    });
+
+    const undone = appReducer(approved, {
+      type: "undo_exporter_correction",
+      findingId: "finding:beneficiary-name",
+    });
+
+    expect(undone.resolutions.fieldOverrides).toEqual({});
+    expect(undone.hasUnrunChanges).toBe(false);
+    expect(undone.activities.at(-1)?.message).toMatch(/undid/i);
+  });
+
   it("rejects exporter correction for a locked bill of lading", () => {
     const state = reduce({
       type: "stage_exporter_corrections",
@@ -131,6 +157,24 @@ describe("external and human resolution paths", () => {
     ]);
   });
 
+  it("discards an unsent external request and restores the open finding", () => {
+    const drafted = reduce({
+      type: "draft_external_requests",
+      findingIds: ["finding:port-of-discharge"],
+      actor: "human",
+    });
+
+    const discarded = appReducer(drafted, {
+      type: "discard_external_request",
+      findingId: "finding:port-of-discharge",
+    });
+
+    expect(discarded.externalRequests).toEqual([]);
+    expect(discarded.resolutions.externalRequestFindingIds).toEqual([]);
+    expect(discarded.hasUnrunChanges).toBe(false);
+    expect(discarded.activities.at(-1)?.message).toMatch(/discarded/i);
+  });
+
   it("rejects external-request drafting for an exporter finding", () => {
     const state = reduce({
       type: "draft_external_requests",
@@ -181,6 +225,25 @@ describe("external and human resolution paths", () => {
     ).toBe("accept");
     expect(confirmed.stagedHumanDecisions).toEqual({});
     expect(confirmed.hasUnrunChanges).toBe(true);
+  });
+
+  it("cancels a staged human decision without recording a resolution", () => {
+    const staged = reduce({
+      type: "stage_human_decision",
+      findingId: "finding:goods-description",
+      decision: "accept",
+      rationale: "Equivalent description confirmed.",
+      actor: "human",
+    });
+
+    const cancelled = appReducer(staged, {
+      type: "cancel_human_decision",
+      findingId: "finding:goods-description",
+    });
+
+    expect(cancelled.stagedHumanDecisions).toEqual({});
+    expect(cancelled.resolutions.humanDecisions).toEqual({});
+    expect(cancelled.activities.at(-1)?.message).toMatch(/cancelled/i);
   });
 
   it("requires a staged decision before confirmation", () => {

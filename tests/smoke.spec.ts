@@ -49,7 +49,7 @@ for (const viewport of [
   { label: "portrait tablet", width: 834, height: 1112 },
   { label: "large tablet", width: 1024, height: 1366 },
 ]) {
-  test(`keeps Documents, Findings, then Preview order on ${viewport.label}`, async ({
+  test(`keeps the current finding, evidence, and action together on ${viewport.label}`, async ({
     page,
   }) => {
     await page.setViewportSize(viewport);
@@ -60,12 +60,18 @@ for (const viewport of [
     const preview = await page
       .getByLabel(/letter of credit preview/i)
       .boundingBox();
+    const evidence = await page.getByLabel("Finding evidence").boundingBox();
+    const resolution = await page.getByLabel("Resolution controls").boundingBox();
 
     expect(documents).not.toBeNull();
     expect(findings).not.toBeNull();
     expect(preview).not.toBeNull();
-    expect(documents!.y).toBeLessThan(findings!.y);
-    expect(findings!.y).toBeLessThan(preview!.y);
+    expect(evidence).not.toBeNull();
+    expect(resolution).not.toBeNull();
+    expect(findings!.y).toBeLessThan(evidence!.y);
+    expect(evidence!.y).toBeLessThan(resolution!.y);
+    expect(resolution!.y).toBeLessThan(preview!.y);
+    expect(preview!.y).toBeLessThan(documents!.y);
   });
 }
 
@@ -122,4 +128,21 @@ test("keeps operational metadata legible with AA text contrast", async ({ page }
   expect(metadata.sourceLocation.fontSize).toBeGreaterThanOrEqual(12);
   expect(metadata.activityTime.contrast).toBeGreaterThanOrEqual(4.5);
   expect(metadata.activityTime.fontSize).toBeGreaterThanOrEqual(12);
+});
+
+test("keeps desktop evidence visually connected to the document preview", async ({ page }) => {
+  await page.setViewportSize({ width: 1600, height: 1000 });
+  await page.goto("/");
+
+  const evidence = await page.getByLabel("Finding evidence").boundingBox();
+  const preview = await page.getByLabel(/letter of credit preview/i).boundingBox();
+  const resolution = await page.getByLabel("Resolution controls").boundingBox();
+  const documents = await page.getByLabel("Shipment documents").boundingBox();
+
+  expect(evidence).not.toBeNull();
+  expect(preview).not.toBeNull();
+  expect(resolution).not.toBeNull();
+  expect(documents).not.toBeNull();
+  expect(preview!.y - (evidence!.y + evidence!.height)).toBeLessThanOrEqual(16);
+  expect(documents!.y - (resolution!.y + resolution!.height)).toBeLessThanOrEqual(16);
 });

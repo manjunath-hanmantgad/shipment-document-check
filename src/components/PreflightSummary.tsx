@@ -1,59 +1,53 @@
 import type { AppState } from "../domain/actions";
+import { workflowCount } from "../domain/workflow";
 
 interface PreflightSummaryProps {
   state: AppState;
 }
 
 export function PreflightSummary({ state }: PreflightSummaryProps) {
-  const proposalIds = new Set(state.proposals.map((item) => item.findingId));
-  const externalIds = new Set([
-    ...state.externalRequests.map((item) => item.findingId),
-    ...state.preflight.findings
-      .filter((item) => item.findingStatus === "pending_external")
-      .map((item) => item.id),
-  ]);
-  const humanIds = new Set([
-    ...Object.keys(state.stagedHumanDecisions),
-    ...Object.keys(state.resolutions.humanDecisions),
-    ...state.preflight.findings
-      .filter((item) => item.findingStatus === "human_reviewed")
-      .map((item) => item.id),
-  ]);
-
-  const open = state.preflight.findings.filter(
-    (finding) =>
-      !proposalIds.has(finding.id) &&
-      !externalIds.has(finding.id) &&
-      !humanIds.has(finding.id),
-  ).length;
-
-  const items = [
-    { label: "Passing", value: state.preflight.summary.pass },
-    { label: "Open", value: open },
-    { label: "Proposal pending", value: state.proposals.length },
-    {
-      label: "Resolved internally",
-      value: Object.keys(state.resolutions.fieldOverrides).length,
-    },
-    { label: "Pending external", value: externalIds.size },
-    {
-      label: "Human reviewed",
-      value: Object.keys(state.resolutions.humanDecisions).length,
-    },
-  ];
+  const passing = state.preflight.summary.pass;
+  const totalChecks = Object.values(state.preflight.summary).reduce(
+    (total, count) => total + count,
+    0,
+  );
+  const open = workflowCount(state, "Open");
+  const verificationPending = workflowCount(state, "Verification pending");
+  const pendingExternal = workflowCount(state, "Pending external");
+  const awaitingConfirmation =
+    workflowCount(state, "Awaiting approval") +
+    workflowCount(state, "Awaiting confirmation");
 
   return (
-    <section className="summary-strip" aria-label="Preflight status summary">
-      {items.map((item) => (
-        <article
-          key={item.label}
-          className="summary-item"
-          aria-label={`${item.value} ${item.label.toLowerCase()}`}
+    <section className="review-overview" aria-label="Preflight status summary">
+      <div
+        className="review-progress"
+        role="group"
+        aria-label={`${passing} passing of ${totalChecks} checks`}
+      >
+        <p className="section-kicker">Review progress</p>
+        <strong>{passing} of {totalChecks} checks passing</strong>
+        <span>
+          {open} need action · {awaitingConfirmation} awaiting confirmation
+        </span>
+      </div>
+      <div className="review-statuses">
+        <div role="group" aria-label={`${open} open`}>
+          <span className="review-status-label">Open</span>
+          <strong className="review-status-value">{open}</strong>
+        </div>
+        <div
+          role="group"
+          aria-label={`${verificationPending} verification pending`}
         >
-          <strong aria-hidden="true">{item.value}</strong>
-          <span aria-hidden="true">{item.label}</span>
-        </article>
-      ))}
+          <span className="review-status-label">Verification pending</span>
+          <strong className="review-status-value">{verificationPending}</strong>
+        </div>
+        <div role="group" aria-label={`${pendingExternal} pending external`}>
+          <span className="review-status-label">Pending external</span>
+          <strong className="review-status-value">{pendingExternal}</strong>
+        </div>
+      </div>
     </section>
   );
 }
