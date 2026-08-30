@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "purpose": "Evaluate tool selection, arguments, authority boundaries, and human checkpoints for the Export Document Pack Preflight WebMCP surface.",
+  "purpose": "Evaluate tool selection, arguments, authority boundaries, and human checkpoints for the Shipment Document Check WebMCP surface.",
   "toolSurface": [
     "get_pack_state",
     "get_finding_evidence",

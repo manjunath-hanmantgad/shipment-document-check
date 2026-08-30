@@ -4,7 +4,7 @@
 **Hard limit:** Under 3 minutes  
 **Audio:** Spoken narration required  
 **Music:** None  
-**Status:** Script and verified production/native journey are ready; recording and public YouTube verification remain
+**Status:** Local narrated candidate verified; public YouTube upload and signed-out verification remain
 
 ## Demo objective
 
@@ -33,11 +33,11 @@ Before recording:
 
 ### 0:00–0:18 — Problem and product
 
-**On screen:** Fresh Export Document Pack Preflight screen. Show the five documents and five findings.
+**On screen:** Fresh Shipment Document Check screen. Show the five documents and five findings.
 
 **Narration:**
 
-> An exporter preparing a letter-of-credit shipment has to reconcile documents produced by several different parties. A typo in an invoice can be corrected internally, but an error in a carrier-issued Bill of Lading cannot. Export Document Pack Preflight gives the exporter and their browser agent one shared workspace that understands those authority boundaries.
+> An exporter preparing a letter-of-credit shipment has to reconcile documents produced by several different parties. A typo in an invoice can be corrected internally, but an error in a carrier-issued Bill of Lading cannot. Shipment Document Check gives the exporter and their browser agent one shared workspace that understands those authority boundaries.
 
 ### 0:18–0:34 — Show WebMCP surface
 

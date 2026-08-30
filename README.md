@@ -1,12 +1,12 @@
-# Export Document Pack Preflight
+# Shipment Document Check
 
 **Authority-aware trade-document review, built with native WebMCP.**
 
-[Open the live application](https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/) · [Review the evaluation evidence](docs/evals/evaluation-report.md) · [Read the MIT licence](LICENSE)
+[Open the live application](https://shipment-document-check-mhanmantfreebi-1870.vercel.app/) · [Review the evaluation evidence](docs/evals/evaluation-report.md) · [Read the MIT licence](LICENSE)
 
-![Export Document Pack Preflight landing page](docs/screenshots/landing-page.jpg)
+![Shipment Document Check landing page](docs/screenshots/landing-page.jpg)
 
-Export Document Pack Preflight is a browser-native review workspace for a fictional letter-of-credit shipment. A WebMCP-capable agent can inspect evidence and prepare the right next action, while the page remains responsible for document authority, visible approval, and the final human judgement.
+Shipment Document Check is a browser-native review workspace for a fictional letter-of-credit shipment. A WebMCP-capable agent can inspect evidence and prepare the right next action, while the page remains responsible for document authority, visible approval, and the final human judgement.
 
 The central product rule is simple:
 
@@ -89,7 +89,7 @@ After the two exporter corrections and the human decision are confirmed, rerunni
 
 The challenge build is intentionally small and deterministic. It has no backend, account system, analytics, document upload, OCR service, or external messaging integration.
 
-![Architecture of the Export Document Pack Preflight application](docs/screenshots/architecture-overview.png)
+![Architecture of the Shipment Document Check application](docs/screenshots/architecture-overview.png)
 
 The diagram is generated from the typed [Archify source](docs/submission/ARCHITECTURE.architecture.json). A standalone [interactive light/dark viewer](docs/submission/ARCHITECTURE.html) is included for local use.
 
@@ -104,7 +104,7 @@ Key implementation boundaries:
 
 ## Try the judge journey
 
-1. Open the [public deployment](https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/) in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
+1. Open the [public deployment](https://shipment-document-check-mhanmantfreebi-1870.vercel.app/) in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
 2. Confirm that the page exposes the six tools listed above.
 3. Give the agent this prompt:
 
@@ -125,8 +125,8 @@ No authentication, credentials, uploads, or paid services are required. Unsuppor
 - Chromium for Playwright end-to-end tests
 
 ```bash
-git clone https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public.git
-cd webmcp-challenge-2026-manjunath-public
+git clone https://github.com/manjunath-hanmantgad/shipment-document-check.git
+cd shipment-document-check
 nvm use
 corepack enable
 corepack pnpm@10.15.1 install --frozen-lockfile

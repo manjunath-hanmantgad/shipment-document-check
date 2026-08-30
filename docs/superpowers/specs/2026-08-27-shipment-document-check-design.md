@@ -1,11 +1,11 @@
-# Export Document Pack Preflight
+# Shipment Document Check
 
 ## Hardened Product Scope and WebMCP Design
 
 **Document status:** Approved scope, version 2.0  
 **Approved:** 28 August 2026  
-**Repository:** `manjunath-hanmantgad/webmcp-challenge-2026-manjunath`  
-**Working product name:** Export Document Pack Preflight  
+**Repository:** `manjunath-hanmantgad/shipment-document-check`  
+**Working product name:** Shipment Document Check  
 **Challenge:** OpenAI WebMCP Challenge 2026  
 **Supersedes:** The broader three-case, fifteen-rule, nine-tool design preserved in Git history
 
@@ -477,7 +477,7 @@ Deferred work must not quietly return unless equal core work is removed and the 
 
 ## 14. Judge-facing statement
 
-> Export Document Pack Preflight is a browser-native resolution workspace for SME exporters. A user can ask their agent to review one active shipment pack, stage corrections only to exporter-owned drafts, prepare requests for issuer-owned errors, and bring ambiguous differences to the human. Six WebMCP tools operate the same visible case, while deterministic page logic enforces ownership, confirmation, provenance, and locked-document boundaries.
+> Shipment Document Check is a browser-native resolution workspace for SME exporters. A user can ask their agent to review one active shipment pack, stage corrections only to exporter-owned drafts, prepare requests for issuer-owned errors, and bring ambiguous differences to the human. Six WebMCP tools operate the same visible case, while deterministic page logic enforces ownership, confirmation, provenance, and locked-document boundaries.
 
 ---
 

@@ -37,7 +37,7 @@ describe("single-screen document resolution workflow", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Export Document Pack Preflight",
+        name: "Shipment Document Check",
       }),
     ).toBeVisible();
   });

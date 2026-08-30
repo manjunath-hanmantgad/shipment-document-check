@@ -8,7 +8,7 @@
 
 **Tech Stack:** React 19, TypeScript 5.9, Vite 7, Vitest 3, Playwright 1.55, pnpm 10, native WebMCP, Vercel static hosting.
 
-**Spec:** `docs/superpowers/specs/2026-08-27-export-document-pack-preflight-design.md` and `docs/submission/FINAL_CHECKLIST.md`.
+**Spec:** `docs/superpowers/specs/2026-08-27-shipment-document-check-design.md` and `docs/submission/FINAL_CHECKLIST.md`.
 
 ## Global Constraints
 

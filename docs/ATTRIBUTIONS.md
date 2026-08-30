@@ -1,6 +1,6 @@
 # Dependency and Asset Attributions
 
-This file records every direct non-original dependency and asset used by Export Document Pack Preflight. The committed lockfile and installed dependency graph were reviewed on 2026-08-29 with pnpm 10.15.1.
+This file records every direct non-original dependency and asset used by Shipment Document Check. The committed lockfile and installed dependency graph were reviewed on 2026-08-29 with pnpm 10.15.1.
 
 ## Direct dependency record
 
@@ -36,7 +36,7 @@ The four JPEG images in `docs/screenshots/` are direct application captures at 1
 
 `docs/screenshots/architecture-overview.png`, `docs/submission/ARCHITECTURE.architecture.json`, and `docs/submission/ARCHITECTURE.html` were generated for this project with [Archify](https://github.com/tt-a1i/archify) 2.16 (MIT). Archify was used only as a documentation-authoring tool and is not a runtime or package dependency. The typed source describes the repository's actual client-only components and authority boundaries; no backend or external service was invented for the diagram.
 
-`public/assets/landing/export-preflight-hero.webp` is original AI-generated artwork created specifically for this project's judge-facing landing experience with OpenAI's built-in image-generation capability in Codex. The built-in tool did not expose a model identifier. The final artwork contains fictional, unbranded trade-document forms and port infrastructure; it uses no third-party artwork, characters, logos, flags, company names, or readable text.
+`public/assets/landing/shipment-document-check-hero.webp` is original AI-generated artwork created specifically for this project's judge-facing landing experience with OpenAI's built-in image-generation capability in Codex. The built-in tool did not expose a model identifier. The final artwork contains fictional, unbranded trade-document forms and port infrastructure; it uses no third-party artwork, characters, logos, flags, company names, or readable text.
 
 ## Transitive dependency review
 

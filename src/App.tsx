@@ -71,7 +71,7 @@ function App() {
       >
       <header className="app-header">
         <div>
-          <h2 id="application-title">Export Document Pack Preflight</h2>
+          <h2 id="application-title">Shipment Document Check</h2>
           <p className="app-subtitle">
             Review one fictional shipment pack while the page enforces who may
             change each document.

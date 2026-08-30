@@ -13,7 +13,7 @@ test("renders the product shell and honest WebMCP fallback", async ({ page }) =>
   await expect(page).toHaveURL(/#workspace-demo$/);
   await expect(page.locator("#workspace-demo")).toBeInViewport();
   await expect(
-    page.getByRole("heading", { name: "Export Document Pack Preflight" }),
+    page.getByRole("heading", { name: "Shipment Document Check" }),
   ).toBeVisible();
   await expect(page.getByLabel("WebMCP capability status")).toContainText(
     "WebMCP not available",

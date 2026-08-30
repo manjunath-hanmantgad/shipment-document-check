@@ -1,6 +1,6 @@
 # Final Challenge Submission Checklist
 
-**Project:** Export Document Pack Preflight  
+**Project:** Shipment Document Check
 **Controlling deadline:** September 3, 2026 at 1:00 PM Pacific Time  
 **Internal freeze:** September 3, 2026 at 8:00 PM IST  
 **Status vocabulary:** `verified`, `pending`, `blocked`, `not-applicable`
@@ -45,7 +45,7 @@ A local clean-checkout failure blocks submission until fixed. Hosted CI is usefu
 
 | Check | Status | Evidence |
 |---|---|---|
-| Public no-login live URL exists | verified | Anonymous `200`: `https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/` |
+| Public no-login live URL exists | verified | Anonymous `200`: `https://shipment-document-check-mhanmantfreebi-1870.vercel.app/` |
 | ChatGPT in-app browser opens the live URL | verified | Production title and workspace rendered on 2026-08-30 |
 | Native WebMCP environment discovers exactly six tools | verified | Native `webmcp.fetchTools()` returned the approved six-tool surface |
 | Tool schemas are visible and valid | verified | Native production tool descriptions and JSON Schemas were enumerated |
@@ -110,26 +110,26 @@ Script: `docs/submission/DEMO_SCRIPT.md`
 
 | Requirement | Status | Evidence |
 |---|---|---|
-| Actual running product is shown | pending | Recording not yet produced |
-| Six WebMCP tools are visibly shown | pending | Recording not yet produced |
-| Staged exporter corrections are shown | pending | Recording not yet produced |
-| Human approval is shown | pending | Recording not yet produced |
-| Locked-document protection is shown | pending | Recording not yet produced |
-| External requests shown as unsent drafts | pending | Recording not yet produced |
-| Human judgement and rationale shown | pending | Recording not yet produced |
-| Final 7-pass / 2-pending-external state shown | pending | Recording not yet produced |
-| Duration under three minutes | pending | Verify uploaded video |
-| Audio narration is present | pending | Verify uploaded video |
+| Actual running product is shown | verified locally | Renamed production-equivalent application captures comprise the A-roll |
+| Six WebMCP tools are visibly shown | verified locally | Exactly six tool names appear in the native-tool chapter |
+| Staged exporter corrections are shown | verified locally | Both proposals are visible before approval |
+| Human approval is shown | verified locally | The page-only approval state is visible |
+| Locked-document protection is shown | verified locally | Carrier-owned Bill of Lading remains locked |
+| External requests shown as unsent drafts | verified locally | Carrier and authority requests remain unsent |
+| Human judgement and rationale shown | verified locally | Staged acceptance and rationale are visible before confirmation |
+| Final 7-pass / 2-pending-external state shown | verified locally | Final summary is visible before the outro |
+| Duration under three minutes | verified locally | 150.738 seconds |
+| Audio narration is present | verified locally | AAC mono, 48 kHz; waveform checked across the full candidate |
 | Video is public on YouTube | pending | Verify signed-out |
-| No copyrighted music, unnecessary third-party trademarks, or private account data | pending | Product branding cleaned up; review final recording |
+| No copyrighted music, unnecessary third-party trademarks, or private account data | verified locally | Narration only; fictional product captures; no account screens |
 
 ## 8. Submission links
 
 Fill only after verification:
 
 ```text
-Live application: https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/
-Public repository: https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public
+Live application: https://shipment-document-check-mhanmantfreebi-1870.vercel.app/
+Public repository: https://github.com/manjunath-hanmantgad/shipment-document-check
 Public YouTube demo: [T11_VERIFIED_YOUTUBE_URL]
 Submission tag: [T12_FINAL_TAG]
 ```

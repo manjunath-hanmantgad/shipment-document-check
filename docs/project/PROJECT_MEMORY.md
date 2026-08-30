@@ -1,7 +1,7 @@
 # Project Memory State
 
-**Project:** Export Document Pack Preflight  
-**Repository:** `manjunath-hanmantgad/webmcp-challenge-2026-manjunath`  
+**Project:** Shipment Document Check
+**Repository:** `manjunath-hanmantgad/shipment-document-check`
 **Memory version:** 2.1
 **Last durable update:** 29 August 2026
 **Current task:** `T10 — Deploy and validate the judge path`
@@ -18,8 +18,8 @@ This file is the durable handoff state for humans and coding agents. Read it bef
 2. `docs/project/CURRENT_PROGRESS.md`
 3. `docs/project/task-tracker.html`
 4. `docs/project/task-tracker-data.js`
-5. `docs/superpowers/specs/2026-08-27-export-document-pack-preflight-design.md`
-6. `docs/superpowers/plans/2026-08-27-export-document-pack-preflight-implementation.md`
+5. `docs/superpowers/specs/2026-08-27-shipment-document-check-design.md`
+6. `docs/superpowers/plans/2026-08-27-shipment-document-check-implementation.md`
 
 The current specification and implementation plan supersede their broader earlier versions preserved in Git history.
 

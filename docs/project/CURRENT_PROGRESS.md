@@ -1,8 +1,8 @@
 # Current Project Progress
 
-**Project:** Export Document Pack Preflight
+**Project:** Shipment Document Check
 
-**Public repository:** `manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public`
+**Public repository:** `manjunath-hanmantgad/shipment-document-check`
 
 **Snapshot date:** 30 August 2026
 
@@ -43,7 +43,7 @@ The redesigned operational workspace and shared workflow-status fix are on publi
 Verified production URL:
 
 ```text
-https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/
+https://shipment-document-check-mhanmantfreebi-1870.vercel.app/
 ```
 
 Observed evidence on 30 August 2026:
@@ -69,7 +69,7 @@ All six natural-language eval cases were run against the native production tool 
 Verified public repository:
 
 ```text
-https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public
+https://github.com/manjunath-hanmantgad/shipment-document-check
 ```
 
 Anonymous GitHub evidence reports:

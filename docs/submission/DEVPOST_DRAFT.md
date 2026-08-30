@@ -1,12 +1,12 @@
 # Devpost Submission Draft
 
-**Project:** Export Document Pack Preflight
+**Project:** Shipment Document Check
 
 **Status:** Draft. The live application and public repository are verified; the public video and final tag remain pending.
 
-**Live URL:** <https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/>
+**Live URL:** <https://shipment-document-check-mhanmantfreebi-1870.vercel.app/>
 
-**Public repository:** <https://github.com/manjunath-hanmantgad/webmcp-challenge-2026-manjunath-public>
+**Public repository:** <https://github.com/manjunath-hanmantgad/shipment-document-check>
 
 **Public YouTube demo:** `[T11_VERIFIED_YOUTUBE_URL]`
 
@@ -16,7 +16,7 @@ Export-documentation teams preparing letter-of-credit shipments must reconcile d
 
 This is a documented workflow problem rather than an invented hackathon scenario. The U.S. International Trade Administration describes letter-of-credit documentation as detailed and prone to errors and notes that discrepancies must be corrected or amended before documents move forward.
 
-Export Document Pack Preflight focuses on one narrow job: help an SME export-documentation executive review one shipment pack, correct only the drafts the exporter controls, prepare requests for problems owned by external issuers, and leave ambiguous wording to explicit human judgement.
+Shipment Document Check focuses on one narrow job: help an SME export-documentation executive review one shipment pack, correct only the drafts the exporter controls, prepare requests for problems owned by external issuers, and leave ambiguous wording to explicit human judgement.
 
 The challenge build uses one fictional five-document pack and nine transparent consistency checks. It is deliberately not positioned as comprehensive UCP 600 compliance, bank acceptance certification, legal advice, or production document automation.
 
@@ -137,7 +137,7 @@ An exporter-owned draft can receive a staged proposal. A carrier-issued Bill of 
 
 ## Testing instructions
 
-1. Open <https://export-document-pack-preflight-public-mhanmantfreebi-1870.vercel.app/> in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
+1. Open <https://shipment-document-check-mhanmantfreebi-1870.vercel.app/> in ChatGPT's in-app browser or Chrome 149+ with WebMCP testing enabled.
 2. Confirm these six tools are available:
 
 ```text

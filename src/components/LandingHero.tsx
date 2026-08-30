@@ -40,7 +40,7 @@ export function LandingHero() {
 
         <figure className="landing-hero__art">
           <img
-            src="/assets/landing/export-preflight-hero.webp"
+            src="/assets/landing/shipment-document-check-hero.webp"
             width="1600"
             height="1100"
             loading="eager"

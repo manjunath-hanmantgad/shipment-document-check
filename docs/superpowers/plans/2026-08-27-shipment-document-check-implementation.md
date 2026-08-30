@@ -1,4 +1,4 @@
-# Export Document Pack Preflight Implementation Plan
+# Shipment Document Check Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** React, TypeScript, Vite, pnpm, React `useReducer`, Zod, Vitest, Testing Library, Playwright, ESLint, plain CSS, static hosting, and the WebMCP Imperative API.
 
-**Spec:** `docs/superpowers/specs/2026-08-27-export-document-pack-preflight-design.md`
+**Spec:** `docs/superpowers/specs/2026-08-27-shipment-document-check-design.md`
 
 ## Global constraints
 
@@ -74,9 +74,9 @@
 │   │   └── FINAL_CHECKLIST.md
 │   └── superpowers/
 │       ├── specs/
-│       │   └── 2026-08-27-export-document-pack-preflight-design.md
+│       │   └── 2026-08-27-shipment-document-check-design.md
 │       └── plans/
-│           └── 2026-08-27-export-document-pack-preflight-implementation.md
+│           └── 2026-08-27-shipment-document-check-implementation.md
 ├── src/
 │   ├── main.tsx
 │   ├── App.tsx
@@ -184,7 +184,7 @@ rerun_preflight
 Use these exact top-level sections:
 
 ```md
-# Export Document Pack Preflight
+# Shipment Document Check
 ## What it demonstrates
 ## Why WebMCP
 ## Product boundary
@@ -261,7 +261,7 @@ Do not add a component library, router, backend, analytics SDK, model API, or st
 ```tsx
 it("shows the product boundary and WebMCP capability state", () => {
   render(<App />);
-  expect(screen.getByRole("heading", { name: /export document pack preflight/i })).toBeVisible();
+  expect(screen.getByRole("heading", { name: /shipment document check/i })).toBeVisible();
   expect(screen.getByText(/not a definitive compliance review/i)).toBeVisible();
   expect(screen.getByText(/webmcp/i)).toBeVisible();
 });
