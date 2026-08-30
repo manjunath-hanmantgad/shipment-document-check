@@ -16,7 +16,7 @@
 
 **Known product-code blockers:** None
 
-**Repository visibility:** Public, privacy-sanitized nine-commit history
+**Repository visibility:** Public, privacy-sanitized history
 
 This file records transient execution state. Durable product decisions remain in `PROJECT_MEMORY.md`; detailed steps remain in the implementation plans. Devpost submission remains prohibited until the owner gives a separate explicit instruction.
 
@@ -78,7 +78,7 @@ Anonymous GitHub evidence reports:
 - default branch `main`;
 - MIT licence detected;
 - public README and licence return HTTP `200`;
-- nine-commit sanitized history;
+- sanitized history containing only challenge-release work;
 - only the GitHub noreply author identity appears in history;
 - no Gmail address was found in commit metadata or historical content.
 

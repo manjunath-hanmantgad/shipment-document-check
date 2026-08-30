@@ -77,7 +77,7 @@ Do not publish a tool-selection percentage until these observed calls are record
 | Repository contains complete source and setup instructions | verified | Anonymous README/source review after repository rename on 2026-08-30 |
 | Root MIT `LICENSE` exists | verified | `LICENSE` |
 | Dependency/asset attributions are current | verified | Direct versions and resolved licence families reviewed on 2026-08-29 |
-| Repository contains no real trade documents or personal/private data | verified | Nine-commit public history uses only the GitHub noreply identity; Gmail/content scan returned no hits |
+| Repository contains no real trade documents or personal/private data | verified | Public history uses only the GitHub noreply identity; Gmail/content scan returned no hits |
 | Repository is public | verified | Anonymous GitHub API reports `private=false`, `visibility=public`, default branch `main` |
 | GitHub visibly detects the MIT licence | verified | Anonymous GitHub API reports SPDX `MIT` |
 | README links work signed-out | verified | Repository API, raw README, licence, and live application returned anonymous `200` after rename |
