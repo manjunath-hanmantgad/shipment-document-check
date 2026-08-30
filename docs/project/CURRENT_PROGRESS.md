@@ -8,15 +8,15 @@
 
 **Scope version:** 2.0, finalized and frozen
 
-**Current phase:** Public demo recording and final challenge audit
+**Current phase:** Final submission-material preparation
 
-**Current task:** `T11.5 — Record, publish, and verify the public YouTube demo`
+**Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
 
-**Completed through:** `T10 — Deploy and validate the judge path`
+**Completed through:** `T11.4`, plus a locally verified narrated demo candidate
 
 **Known product-code blockers:** None
 
-**Repository visibility:** Public, privacy-sanitized four-commit history
+**Repository visibility:** Public, privacy-sanitized nine-commit history
 
 This file records transient execution state. Durable product decisions remain in `PROJECT_MEMORY.md`; detailed steps remain in the implementation plans. Devpost submission remains prohibited until the owner gives a separate explicit instruction.
 
@@ -34,7 +34,7 @@ The challenge build remains intentionally narrow:
 - visible human approval and confirmation checkpoints;
 - no backend, OCR, model API, persistence, external send, or embedded chatbot.
 
-The redesigned operational workspace and shared workflow-status fix are on public `main` at commit `921cd71`. Playwright, Vite, and Vitest were patched without broader dependency upgrades.
+The renamed product, screenshots, architecture, evaluation evidence, and submission materials are on public `main` at commit `1e9d9bd`. The six WebMCP tool names and authority behavior were intentionally unchanged.
 
 ---
 
@@ -78,7 +78,7 @@ Anonymous GitHub evidence reports:
 - default branch `main`;
 - MIT licence detected;
 - public README and licence return HTTP `200`;
-- four-commit sanitized history;
+- nine-commit sanitized history;
 - only the GitHub noreply author identity appears in history;
 - no Gmail address was found in commit metadata or historical content.
 
@@ -86,7 +86,7 @@ Anonymous GitHub evidence reports:
 
 ## 4. Final code-verification gate
 
-The merged `main` checkout passed this gate on 30 August 2026:
+The renamed release passed this gate on 30 August 2026:
 
 ```bash
 corepack pnpm@10.15.1 install --frozen-lockfile
@@ -99,7 +99,7 @@ corepack pnpm@10.15.1 audit
 corepack pnpm@10.15.1 audit --prod
 ```
 
-Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed, production build passed, 12/12 Chromium journeys passed, and both audits reported no known vulnerabilities.
+Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed, production build passed, 12/12 local Chromium journeys passed, the same 12/12 journeys passed against the anonymous production URL, and both audits reported no known vulnerabilities.
 
 ---
 
@@ -107,8 +107,8 @@ Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed,
 
 | Status | Tasks |
 |---|---|
-| Completed | `T00`–`T10` |
-| Current | `T11.5` public YouTube demo |
+| Completed | `T00`–`T10`, `T11.1`–`T11.4`, local narrated demo candidate, renamed public release, and final technical compliance audit |
+| Current | `T11.5` owner-controlled public YouTube upload and verification |
 | Pending | `T12` final links, tag, and challenge-compliance freeze |
 | Deferred | `D01`–`D04` post-challenge ideas |
 
@@ -116,10 +116,8 @@ Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed,
 
 ## 6. Exact next actions
 
-1. Record the verified production/native journey with clear narration in under three minutes.
-2. Publish the video publicly on YouTube and verify playback, audio, duration, and signed-out access.
-3. Replace the remaining YouTube and final-tag placeholders.
-4. Rerun the current official-rules and submission-requirements audit.
-5. Run the final source, history, link, placeholder, attribution, build, and test checks.
-6. Create and push the final submission tag only after every non-Devpost gate passes.
-7. Do not accept terms or submit anything on Devpost without a separate explicit owner instruction.
+1. When the owner authorizes YouTube upload, publish the prepared 150.738-second narrated candidate and verify signed-out playback.
+2. Replace the remaining YouTube and final-tag placeholders.
+3. Give the Devpost description a final owner edit so it is not submitted as untouched AI-assisted copy.
+4. Create and push the final submission tag only after every non-Devpost gate passes.
+5. Do not accept terms, alter the Devpost draft, or submit anything on Devpost without a separate explicit owner instruction.

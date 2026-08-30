@@ -27,7 +27,7 @@ Do not mark an item verified from memory. Record evidence next to it.
 
 | Check | Status | Evidence |
 |---|---|---|
-| `pnpm-lock.yaml` is generated and committed | verified | Public `main` commit `921cd71` |
+| `pnpm-lock.yaml` is generated and committed | verified | Renamed public `main` commit `1e9d9bd` |
 | Clean `pnpm install --frozen-lockfile` succeeds | verified | Pinned pnpm 10.15.1 frozen install exited 0 on 2026-08-30 |
 | `pnpm lint` exits 0 | verified | Fresh merged-`main` run exited 0 on 2026-08-30 |
 | `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on 2026-08-30 |
@@ -74,13 +74,13 @@ Do not publish a tool-selection percentage until these observed calls are record
 
 | Requirement | Status | Evidence |
 |---|---|---|
-| Repository contains complete source and setup instructions | pending | Final link/read-through after T11 |
+| Repository contains complete source and setup instructions | verified | Anonymous README/source review after repository rename on 2026-08-30 |
 | Root MIT `LICENSE` exists | verified | `LICENSE` |
 | Dependency/asset attributions are current | verified | Direct versions and resolved licence families reviewed on 2026-08-29 |
-| Repository contains no real trade documents or personal/private data | verified | Four-commit public history uses only the GitHub noreply identity; Gmail/content scan returned no hits |
+| Repository contains no real trade documents or personal/private data | verified | Nine-commit public history uses only the GitHub noreply identity; Gmail/content scan returned no hits |
 | Repository is public | verified | Anonymous GitHub API reports `private=false`, `visibility=public`, default branch `main` |
 | GitHub visibly detects the MIT licence | verified | Anonymous GitHub API reports SPDX `MIT` |
-| README links work signed-out | pending | Public README and licence return `200`; final link scan follows the video update |
+| README links work signed-out | verified | Repository API, raw README, licence, and live application returned anonymous `200` after rename |
 | No secrets or environment credentials are committed | verified | Current-tree and all-revision filename/content pattern scans returned no hits on 2026-08-30 |
 
 ## 6. Devpost description
@@ -103,6 +103,12 @@ Draft: `docs/submission/DEVPOST_DRAFT.md`
 - [x] Replace the public repository URL after signed-out verification.
 - [ ] Replace `[T11_VERIFIED_YOUTUBE_URL]` only after video is public.
 - [ ] Remove every bracketed placeholder before submission.
+
+AI-use safeguards from the signed-in submission guidance:
+
+- [x] The owner selected the plain project name `Shipment Document Check`.
+- [x] The local demo includes spoken narration; AI assistance for the script and narration is permitted.
+- [ ] The owner must make a final edit to the project description before it is copied to Devpost; do not submit untouched AI-assisted copy.
 
 ## 7. Demo video
 
@@ -138,8 +144,8 @@ Submission tag: [T12_FINAL_TAG]
 
 Before pressing Submit:
 
-- [ ] Re-read the current Devpost official rules.
-- [ ] Verify deadline and timezone again.
+- [x] Re-read the current Devpost official rules on 2026-08-30.
+- [x] Verify deadline and timezone again: September 3, 2026 at 1:00 PM Pacific Time.
 - [x] Generate and commit `pnpm-lock.yaml`.
 - [x] Run the complete code/test gate from a clean checkout.
 - [x] Verify live site signed-out.
@@ -147,8 +153,8 @@ Before pressing Submit:
 - [ ] Verify video signed-out.
 - [x] Verify all six WebMCP tools in the native environment.
 - [x] Verify all six agent eval observations are recorded.
-- [ ] Search the repository for secrets, private data, `TODO`, `TBD`, and submission placeholders.
-- [ ] Confirm all assets and dependencies are original or correctly attributed.
+- [x] Search the repository for secrets, private data, `TODO`, `TBD`, and submission placeholders; only the intentional YouTube and final-tag placeholders remain.
+- [x] Confirm all assets and dependencies are original or correctly attributed.
 - [ ] Create final submission tag.
 - [ ] Complete Devpost submission before internal freeze.
 - [ ] Freeze judged repository/deployment/submission artefacts.

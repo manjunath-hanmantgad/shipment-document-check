@@ -3,9 +3,9 @@
 **Project:** Shipment Document Check
 **Repository:** `manjunath-hanmantgad/shipment-document-check`
 **Memory version:** 2.1
-**Last durable update:** 29 August 2026
-**Current task:** `T10 — Deploy and validate the judge path`
-**Implementation state:** Local release-candidate fixes verified; not yet merged, pushed, or deployed
+**Last durable update:** 30 August 2026
+**Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
+**Implementation state:** Renamed release merged to public `main`, deployed without login protection, and verified through native WebMCP and public browser journeys
 **Scope state:** Hardened, approved, and frozen
 
 This file is the durable handoff state for humans and coding agents. Read it before changing the repository. Transient execution evidence belongs in `CURRENT_PROGRESS.md`; detailed steps belong in the implementation plan.
