@@ -4,15 +4,17 @@
 
 **Public repository:** `manjunath-hanmantgad/shipment-document-check`
 
+**Public demo:** <https://www.youtube.com/watch?v=cwXs5d_mGE0>
+
 **Snapshot date:** 1 September 2026
 
 **Scope version:** 2.0, finalized and frozen
 
 **Current phase:** Final submission-material preparation
 
-**Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
+**Current task:** `T12.3 — Final owner edit and Devpost field verification`
 
-**Completed through:** `T11.4`, plus a locally verified 166-second judge-first narrated demo candidate
+**Completed through:** `T12.2`, including the public 166-second narrated YouTube demo
 
 **Known product-code blockers:** None
 
@@ -34,7 +36,7 @@ The challenge build remains intentionally narrow:
 - visible human approval and confirmation checkpoints;
 - no backend, OCR, model API, persistence, external send, or embedded chatbot.
 
-The renamed product, screenshots, architecture, evaluation evidence, and submission-polish materials are on public `main` through commit `95c15cf`. The six WebMCP tool names and authority behavior were intentionally unchanged.
+The renamed product, screenshots, architecture, evaluation evidence, and submission-polish materials are on public `main`. This documentation audit started from public commit `e1947a8`; the six WebMCP tool names and authority behavior remain unchanged.
 
 ---
 
@@ -101,7 +103,9 @@ corepack pnpm@10.15.1 audit --prod
 
 Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed, production build passed, 12/12 local Chromium journeys passed, the same 12/12 journeys passed against the anonymous production URL, and both audits reported no known vulnerabilities.
 
-On 1 September 2026, submission-polish commit `95c15cf` repeated the lint, 55-test Vitest, production-build, 12-journey Chromium, and dependency-audit gates successfully on the merged `main` tree before it was pushed. The runtime application code was unchanged; hosting-platform status still requires a separate post-push verification.
+On 1 September 2026, the current public `main` repeated the lint, 55-test Vitest, production-build, 12-journey Chromium, and dependency-audit gates successfully before it was pushed. A later anonymous read-only check returned HTTP `200`, the expected `Shipment Document Check` title, and the expected production asset files. No deployment mutation was performed.
+
+The final documentation audit on 1 September 2026 then rechecked every tracked folder and document, corrected stale cross-references and evidence wording, and passed frozen install, lint, 55/55 Vitest tests, the production build, 12/12 Chromium journeys, and both full and production-only dependency audits in an isolated worktree. The current tree contains those verified corrections; hosting deployment remains a separate post-integration check.
 
 ---
 
@@ -109,17 +113,16 @@ On 1 September 2026, submission-polish commit `95c15cf` repeated the lint, 55-te
 
 | Status | Tasks |
 |---|---|
-| Completed | `T00`–`T10`, `T11.1`–`T11.4`, local narrated demo candidate, renamed public release, and final technical compliance audit |
-| Current | `T11.5` owner-controlled public YouTube upload and verification |
-| Pending | `T12` final links, tag, and challenge-compliance freeze |
+| Completed | `T00`–`T11`, `T12.1`–`T12.2`, public narrated demo, renamed public release, and final technical compliance audit |
+| Current | `T12.3` final owner edit and Devpost field verification |
+| Pending | `T12.4`–`T12.5` optional tag, submission authorization, and challenge freeze |
 | Deferred | `D01`–`D04` post-challenge ideas |
 
 ---
 
 ## 6. Exact next actions
 
-1. When the owner authorizes YouTube upload, publish the prepared 166-second judge-first narrated candidate and verify signed-out playback.
-2. Add the verified public YouTube URL to the submission documents; no bracketed URL or tag placeholders remain.
-3. Give the Devpost description a final owner edit so it is not submitted as untouched AI-assisted copy.
-4. Create and push an optional release tag only if the owner explicitly requests one.
-5. Do not accept terms, alter the Devpost draft, or submit anything on Devpost without a separate explicit owner instruction.
+1. Give the Devpost description a final owner edit so it is not submitted as untouched AI-assisted copy.
+2. Verify the Devpost fields against the public application, repository, and YouTube links without submitting.
+3. Create and push an optional release tag only if the owner explicitly requests one.
+4. Do not accept terms, alter the live Devpost draft, or submit anything on Devpost without a separate explicit owner instruction.

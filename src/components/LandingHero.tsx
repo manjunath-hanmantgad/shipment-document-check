@@ -24,7 +24,7 @@ export function LandingHero() {
           </p>
           <div className="landing-hero__actions">
             <a className="landing-hero__primary" href="#workspace-demo">
-              Open the live shipment
+              Open the shipment demo
               <span aria-hidden="true">↘</span>
             </a>
             <a className="landing-hero__secondary" href="#webmcp-intro">

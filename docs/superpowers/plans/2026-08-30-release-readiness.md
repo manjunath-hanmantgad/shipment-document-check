@@ -1,5 +1,7 @@
 # WebMCP Release Readiness Implementation Plan
 
+> **Status:** Historical execution plan. Its dated checkboxes and release steps are preserved as plan-time evidence, not current instructions. Current state is recorded in `docs/project/PROJECT_MEMORY.md`, `docs/project/CURRENT_PROGRESS.md`, and `docs/submission/FINAL_CHECKLIST.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Make the redesigned export-pack preflight application internally state-consistent, dependency-clean, publicly accessible, fully documented, and challenge-ready without submitting it to Devpost.

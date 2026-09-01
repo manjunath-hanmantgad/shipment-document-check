@@ -9,7 +9,7 @@ test("renders the product shell and honest WebMCP fallback", async ({ page }) =>
       name: /fix what you control\. escalate what you don't\./i,
     }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Open the live shipment" }).click();
+  await page.getByRole("link", { name: "Open the shipment demo" }).click();
   await expect(page).toHaveURL(/#workspace-demo$/);
   await expect(page.locator("#workspace-demo")).toBeInViewport();
   await expect(
@@ -39,7 +39,7 @@ test("keeps the landing concise and operable at phone width", async ({ page }) =
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBe(390);
 
-  await page.getByRole("link", { name: "Open the live shipment" }).click();
+  await page.getByRole("link", { name: "Open the shipment demo" }).click();
   const resetButton = await page
     .getByRole("button", { name: "Reset demonstration" })
     .boundingBox();

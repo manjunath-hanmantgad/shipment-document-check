@@ -116,9 +116,9 @@ Key implementation boundaries:
 
 No authentication, credentials, uploads, or paid services are required. Unsupported browsers retain the complete manual workflow and show an accurate capability notice; the application never simulates WebMCP availability.
 
-## Demo status
+## Demo video
 
-A **2 minute 46 second** judge-first demo has been verified locally. It opens with a live native WebMCP tool call, then shows the exporter-owned, external-issuer, and human-judgement paths through the final **7 of 9 checks passing** result. The video has not been published; a public YouTube link will be added only after explicit owner approval and a signed-out playback check.
+Watch the **[2 minute 46 second narrated demo on YouTube](https://www.youtube.com/watch?v=cwXs5d_mGE0)**. It opens with a live native WebMCP tool call, then shows the exporter-owned, external-issuer, and human-judgement paths through the final **7 of 9 checks passing** result.
 
 ## Run locally
 
@@ -150,11 +150,11 @@ PLAYWRIGHT_BROWSERS_PATH=0 corepack pnpm@10.15.1 test:e2e
 corepack pnpm@10.15.1 audit
 ```
 
-The latest verified release gate contains:
+The current repository verification gate contains:
 
 - **55** Vitest unit and component tests;
 - **12** Chromium end-to-end journeys;
-- **6** native WebMCP prompt cases executed against the public deployment;
+- **6** native WebMCP prompt cases executed against the public deployment on 30 August 2026;
 - **0** known dependency vulnerabilities reported by the package audit.
 
 The complete observed calls, checkpoints, negative assertions, and final states are recorded in [`docs/evals/evaluation-report.md`](docs/evals/evaluation-report.md). The reusable prompt cases are in [`docs/evals/prompt-cases.json`](docs/evals/prompt-cases.json).

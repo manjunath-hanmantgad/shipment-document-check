@@ -2,6 +2,8 @@
 
 ## Hardened Product Scope and WebMCP Design
 
+**Status note:** Historical approved scope. Current release and submission state is recorded in `docs/project/PROJECT_MEMORY.md`, `docs/project/CURRENT_PROGRESS.md`, and `docs/submission/FINAL_CHECKLIST.md`.
+
 **Document status:** Approved scope, version 2.0  
 **Approved:** 28 August 2026  
 **Repository:** `manjunath-hanmantgad/shipment-document-check`  
@@ -410,7 +412,7 @@ Controlling deadline:
 - 4 September 2026 at 1:30 AM IST
 - Internal project freeze: 3 September 2026 at 8:00 PM IST
 
-The repository is currently private and must become public before submission.
+At approval time the repository was private. It became public on 30 August 2026; current visibility evidence is recorded in `docs/project/CURRENT_PROGRESS.md` and `docs/submission/FINAL_CHECKLIST.md`.
 
 ---
 

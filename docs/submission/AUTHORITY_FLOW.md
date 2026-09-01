@@ -1,6 +1,6 @@
 # WebMCP Authority Flow
 
-This is the single architecture diagram used in the challenge submission. It shows the control boundary that differentiates the project from a generic document assistant.
+This focused authority-flow diagram complements the system architecture overview in the README. It shows the control boundary that differentiates the project from a generic document assistant.
 
 ```mermaid
 flowchart LR

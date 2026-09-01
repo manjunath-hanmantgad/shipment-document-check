@@ -28,15 +28,17 @@ This file records every direct non-original dependency and asset used by Shipmen
 | React type definitions | https://github.com/DefinitelyTyped/DefinitelyTyped | MIT | 19.1.10 | React typing | Preserve upstream licence through package distribution |
 | React DOM type definitions | https://github.com/DefinitelyTyped/DefinitelyTyped | MIT | 19.1.7 | React DOM typing | Preserve upstream licence through package distribution |
 
-No third-party visual asset, logo, font, document template, photograph, illustration, sound, dataset, or real trade document is used.
+The runtime application uses no third-party visual asset, logo, font, document template, photograph, illustration, sound, dataset, or real trade document.
 
-The local judge-first demonstration uses only captures of this project's fictional application and generated spoken narration. It contains no music, stock footage, third-party product footage, account screens, or real shipment data. The video remains a local review artefact and has not been uploaded.
+The [public judge-first demonstration](https://www.youtube.com/watch?v=cwXs5d_mGE0) uses only captures of this project's fictional application and generated spoken narration. It contains no music, stock footage, third-party product footage, account screens, or real shipment data.
 
 `docs/submission/assets/devpost-thumbnail.jpg` is an original 3:2 screenshot of this project's fictional, WebMCP-enabled application state. It contains no browser chrome, account information, real shipment data, or third-party media.
 
 The four JPEG images in `docs/screenshots/` are direct application captures at 1425 × 802 pixels. They show only this project's original interface and fictional shipment data, contain no browser chrome or account information, and were added as public README documentation rather than promotional mockups.
 
 `docs/screenshots/architecture-overview.png`, `docs/submission/ARCHITECTURE.architecture.json`, and `docs/submission/ARCHITECTURE.html` were generated for this project with [Archify](https://github.com/tt-a1i/archify) 2.16 (MIT). Archify was used only as a documentation-authoring tool and is not a runtime or package dependency. The typed source describes the repository's actual client-only components and authority boundaries; no backend or external service was invented for the diagram.
+
+The standalone Archify viewer loads [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) from Google Fonts when it is opened with network access. JetBrains Mono is licensed under the [SIL Open Font License 1.1](https://github.com/JetBrains/JetBrainsMono/blob/master/OFL.txt); a system monospace fallback is used if the font cannot load. Archify's `frontend`, `backend`, and `database` colours classify logical responsibilities inside the diagram. They do not represent deployed tiers: every wrapped component runs in the browser tab.
 
 `public/assets/landing/shipment-document-check-hero.webp` is original AI-generated artwork created specifically for this project's judge-facing landing experience with OpenAI's built-in image-generation capability in Codex. The built-in tool did not expose a model identifier. The final artwork contains fictional, unbranded trade-document forms and port infrastructure; it uses no third-party artwork, characters, logos, flags, company names, or readable text.
 

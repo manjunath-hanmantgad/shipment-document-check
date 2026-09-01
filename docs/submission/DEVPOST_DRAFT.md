@@ -2,13 +2,13 @@
 
 **Project:** Shipment Document Check
 
-**Status:** Draft. The live application and public repository are verified. The demo is verified locally but has not been published; nothing has been submitted to Devpost.
+**Status:** Draft. The live application, public repository, and public narrated demo are verified; nothing has been submitted to Devpost.
 
 **Live URL:** <https://shipment-document-check-mhanmantfreebi-1870.vercel.app/>
 
 **Public repository:** <https://github.com/manjunath-hanmantgad/shipment-document-check>
 
-**Public YouTube demo:** Not published. Add the URL only after an owner-authorized upload and signed-out playback check.
+**Public YouTube demo:** <https://www.youtube.com/watch?v=cwXs5d_mGE0>
 
 ## Problem
 

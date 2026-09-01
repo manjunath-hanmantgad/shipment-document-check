@@ -200,7 +200,7 @@
       "title": "Challenge boundary",
       "items": [
         "Fictional data and deterministic checks run entirely in the browser",
-        "No backend, account, upload, analytics, or messaging service"
+        "Role colours are logical only; no backend, database service, account, upload, analytics, or messaging service"
       ]
     }
   ]

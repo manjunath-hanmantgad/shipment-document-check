@@ -1,5 +1,7 @@
 # Submission Readiness Polish Implementation Plan
 
+> **Status:** Historical execution plan. Its dated checkboxes are preserved as plan-time evidence, not current instructions. Current state is recorded in `docs/project/PROJECT_MEMORY.md`, `docs/project/CURRENT_PROGRESS.md`, and `docs/submission/FINAL_CHECKLIST.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task by task.
 
 **Goal:** Remove the newly discovered flaky phone-layout gate, make the existing demo immediately prove the native WebMCP experience, reconcile submission evidence, and finish with one fresh end-to-end website suite.

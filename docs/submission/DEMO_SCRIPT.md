@@ -8,7 +8,9 @@
 
 **Music:** None
 
-**Status:** Judge-first local candidate verified; YouTube upload and signed-out verification remain owner-controlled and pending
+**Status:** Published on YouTube after owner authorization and verified on 1 September 2026
+
+**Public video:** <https://www.youtube.com/watch?v=cwXs5d_mGE0>
 
 ## Demo objective
 
@@ -109,8 +111,8 @@ The candidate uses only the verified application and fictional bundled shipment 
 - [x] no real or private data is visible;
 - [x] the 166-second runtime is under three minutes;
 - [x] narration is audible and captions are legible;
-- [ ] the video is public on YouTube — intentionally pending explicit owner authorization.
+- [x] the video is public on YouTube at <https://www.youtube.com/watch?v=cwXs5d_mGE0>.
 
-## Publication rule
+## Submission rule
 
-Do not upload, publish, or attach this video to Devpost without explicit owner authorization. After an authorized upload, verify the public YouTube page and full playback while signed out before adding the URL to any submission document.
+The owner-authorized YouTube publication is complete. Do not attach the video to Devpost, alter the live Devpost draft, accept terms, or submit the project without a separate explicit owner instruction.

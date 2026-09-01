@@ -29,15 +29,15 @@ Do not mark an item verified from memory. Record evidence next to it.
 |---|---|---|
 | `pnpm-lock.yaml` is generated and committed | verified | Renamed public `main` commit `1e9d9bd` |
 | Clean `pnpm install --frozen-lockfile` succeeds | verified | Pinned pnpm 10.15.1 frozen install exited 0 on 2026-08-30 |
-| `pnpm lint` exits 0 | verified | Merged public-`main` tree at `95c15cf` exited 0 on 2026-09-01 |
-| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on merged `main` on 2026-09-01 |
-| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on merged `main` on 2026-09-01 |
-| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on merged `main` on 2026-09-01 |
+| `pnpm lint` exits 0 | verified | Final documentation-audit tree exited 0 on 2026-09-01 |
+| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on the final documentation-audit tree on 2026-09-01 |
+| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on the final documentation-audit tree on 2026-09-01 |
+| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on the final documentation-audit tree on 2026-09-01 |
 | Prompt-injection isolation test passes | verified | Included in the 55-test Vitest run on 2026-09-01 |
 | Complete browser journey passes | verified | Automated and native production journeys reached 7/9 with two pending external |
 | Locked WebMCP edit journey passes | verified | Automated and native production calls returned `DOCUMENT_LOCKED` |
-| Production dependency audit is clean | verified | Fresh `pnpm audit` reported no known vulnerabilities on 2026-09-01; prior production-only audit also clean |
-| GitHub Actions CI rerun | not-applicable | Monthly Actions quota exhausted; owner approved local verification instead. Run later only if quota returns. |
+| Production dependency audit is clean | verified | Fresh full and production-only audits reported no known vulnerabilities on the final documentation-audit tree on 2026-09-01 |
+| GitHub Actions CI rerun | not-applicable | Hosted CI is not a challenge requirement; the documented local gate is the controlling evidence. Run hosted CI only if the owner chooses. |
 
 A local clean-checkout failure blocks submission until fixed. Hosted CI is useful evidence, but it is not a challenge requirement and is not allowed to become a fabricated blocker after the owner explicitly deferred it.
 
@@ -53,7 +53,7 @@ A local clean-checkout failure blocks submission until fixed. Hosted CI is usefu
 | Direct B/L correction returns `DOCUMENT_LOCKED` | verified | Observed native production call; locked source unchanged |
 | Manual fallback works without WebMCP | verified | Automated browser fallback journey passed; production bundle matched the tested build byte-for-byte |
 | Reset works on deployed URL | verified | Native production reset restored the five-finding initial state |
-| Fresh reader can follow README without assistance | verified | README judge path, setup, architecture, screenshots, evidence links, and honest unpublished-video status reviewed on 2026-09-01 |
+| Fresh reader can follow README without assistance | verified | README judge path, setup, architecture, screenshots, evidence links, and public demo link reviewed on 2026-09-01 |
 
 ## 4. Six natural-language evals
 
@@ -66,9 +66,9 @@ Eval source: `docs/evals/prompt-cases.json`
 | Stage exporter fixes | verified | State + two evidence reads + staging; two proposals, zero applied overrides |
 | Handle external issuer discrepancies | verified | State + external-draft tool; two unsent requests, locked sources unchanged |
 | Stage human judgement | verified | State + evidence + staged acceptance; no confirmed decision |
-| Primary multi-step journey with adversarial document text | verified | All paths, visible checkpoints, injection ignored, `DOCUMENT_LOCKED`, final 7/9 |
+| Primary multi-step journey with adversarial document text | verified | All paths, visible checkpoints, injection ignored, locked sources unchanged, final 7/9 |
 
-Do not publish a tool-selection percentage until these observed calls are recorded in `docs/evals/evaluation-report.md`.
+Do not publish a tool-selection percentage. These six observed cases are qualitative evidence, not a statistically meaningful rate. The separate prohibited-edit journey that returned `DOCUMENT_LOCKED` is recorded in the native-production evidence above and in the Playwright suite.
 
 ## 5. Repository compliance
 
@@ -101,7 +101,7 @@ Draft: `docs/submission/DEVPOST_DRAFT.md`
 - [x] Create a 3:2 project thumbnail from the real WebMCP-enabled application.
 - [x] Replace the verified live URL after anonymous production verification.
 - [x] Replace the public repository URL after signed-out verification.
-- [ ] Add the public YouTube URL only after an owner-authorized upload and signed-out playback check.
+- [x] Add the verified public YouTube URL after the owner-authorized upload.
 - [x] Remove bracketed submission placeholders from the draft and checklist.
 
 AI-use safeguards from the signed-in submission guidance:
@@ -126,7 +126,7 @@ Script: `docs/submission/DEMO_SCRIPT.md`
 | Final 7-pass / 2-pending-external state shown | verified locally | Final summary is visible before the outro |
 | Duration under three minutes | verified locally | 166 seconds (2:46) |
 | Audio narration is present | verified locally | AAC mono, 96 kHz; waveform checked across the full candidate |
-| Video is public on YouTube | pending | Verify signed-out |
+| Video is public on YouTube | verified | Public watch page and anonymous oEmbed returned the correct title; 166-second playback and 1080p HD availability checked on 2026-09-01 |
 | No copyrighted music, unnecessary third-party trademarks, or private account data | verified locally | Narration only; fictional product captures; no account screens |
 
 ## 8. Submission links
@@ -136,7 +136,7 @@ Fill only after verification:
 ```text
 Live application: https://shipment-document-check-mhanmantfreebi-1870.vercel.app/
 Public repository: https://github.com/manjunath-hanmantgad/shipment-document-check
-Public YouTube demo: Not published — requires explicit owner authorization and signed-out verification.
+Public YouTube demo: https://www.youtube.com/watch?v=cwXs5d_mGE0
 Release tag: Deferred unless the owner explicitly requests one; it is not a challenge submission requirement.
 ```
 
@@ -150,7 +150,7 @@ Before pressing Submit:
 - [x] Run the complete code/test gate from a clean checkout.
 - [x] Verify live site signed-out.
 - [x] Verify repository signed-out.
-- [ ] Verify video signed-out.
+- [x] Verify the public video endpoint anonymously and confirm 1080p playback availability.
 - [x] Verify all six WebMCP tools in the native environment.
 - [x] Verify all six agent eval observations are recorded.
 - [x] Search the repository for secrets, private data, `TODO`, `TBD`, and bracketed submission placeholders; no active submission placeholders remain.
@@ -159,4 +159,4 @@ Before pressing Submit:
 - [ ] Complete Devpost submission before internal freeze.
 - [ ] Freeze judged repository/deployment/submission artefacts.
 
-A checklist item marked blocked is not a reason to improvise a claim. It is simply work that still has to happen, a surprisingly advanced concept in software delivery.
+A pending checklist item must remain pending until its stated verification is complete; it is not a reason to improvise a claim.

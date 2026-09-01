@@ -1,5 +1,7 @@
 # Shipment Document Check Implementation Plan
 
+> **Status:** Historical execution plan. Its dated checkboxes and publication steps are preserved as plan-time evidence, not current instructions. Current state is recorded in `docs/project/PROJECT_MEMORY.md`, `docs/project/CURRENT_PROGRESS.md`, and `docs/submission/FINAL_CHECKLIST.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build and submit one complete WebMCP-native export-document resolution journey using one fictional five-document shipment pack, nine deterministic checks, six WebMCP tools, and explicit human authority.

@@ -2,10 +2,10 @@
 
 **Project:** Shipment Document Check
 **Repository:** `manjunath-hanmantgad/shipment-document-check`
-**Memory version:** 2.1
+**Memory version:** 2.2
 **Last durable update:** 1 September 2026
-**Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
-**Implementation state:** Verified technical and submission-polish commit `95c15cf` is on public `main`; the previously verified no-login deployment requires a post-push hosting-state check before claiming the new repository head is deployed
+**Current task:** `T12.3 — Final owner edit and Devpost field verification`
+**Implementation state:** The verified technical and submission-polish work is on public `main`; the no-login deployment returned the expected application shell and production assets in a read-only check on 1 September 2026
 **Scope state:** Hardened, approved, and frozen
 
 This file is the durable handoff state for humans and coding agents. Read it before changing the repository. Transient execution evidence belongs in `CURRENT_PROGRESS.md`; detailed steps belong in the implementation plan.
@@ -16,12 +16,13 @@ This file is the durable handoff state for humans and coding agents. Read it bef
 
 1. `docs/project/PROJECT_MEMORY.md`
 2. `docs/project/CURRENT_PROGRESS.md`
-3. `docs/project/task-tracker.html`
-4. `docs/project/task-tracker-data.js`
-5. `docs/superpowers/specs/2026-08-27-shipment-document-check-design.md`
-6. `docs/superpowers/plans/2026-08-27-shipment-document-check-implementation.md`
+3. `docs/submission/FINAL_CHECKLIST.md`
+4. `docs/evals/evaluation-report.md`
+5. `docs/project/task-tracker.html` and `docs/project/task-tracker-data.js`
+6. `docs/superpowers/specs/2026-08-27-shipment-document-check-design.md` — approved product contract
+7. `docs/superpowers/plans/` — dated historical execution records
 
-The current specification and implementation plan supersede their broader earlier versions preserved in Git history.
+The first five entries define current release and submission state. The dated specification preserves the approved product boundary; dated plans preserve plan-time facts and must not be treated as current publication or submission instructions.
 
 Foundational history:
 
@@ -263,11 +264,13 @@ Required browser coverage:
 Required eval prompts:
 
 1. inspect without changing;
-2. stage exporter-owned corrections;
-3. draft external requests;
-4. show goods-description evidence;
-5. attempt a prohibited Bill of Lading edit;
-6. rerun after human approvals and explain remaining work.
+2. explain the goods-description discrepancy from exact evidence;
+3. stage exporter-owned corrections without approving them;
+4. draft external requests without sending them;
+5. stage a goods-description judgement without confirming it;
+6. complete the primary multi-step journey across visible human checkpoints.
+
+The prohibited Bill of Lading edit remains a separate native/manual production check and a dedicated Playwright journey; it is not one of the six reusable prompt cases.
 
 No accuracy, readiness, compliance, or time-saving figure may be published without reproducible evidence.
 
@@ -362,7 +365,7 @@ This decision occurred before application code was written.
 
 ### 29 August 2026 — Human-confirmation consistency fix verified
 
-The deployed build can stage a human decision without selecting its affected finding, hiding the required visible confirmation control. Local commit `1da8ceb` selects the affected finding after staging and adds a complete Playwright regression journey. This fix must reach `main` and the live deployment before native evaluation or video recording.
+At this checkpoint, the deployed build could stage a human decision without selecting its affected finding, hiding the required visible confirmation control. Local commit `1da8ceb` corrected the selection behavior and added a complete Playwright regression journey. The fix was later merged, deployed, and verified; this entry remains as historical evidence.
 
 ### 29 August 2026 — Reproducible local gate verified
 
@@ -380,6 +383,10 @@ The renamed repository and deployment became publicly accessible without login. 
 
 An isolated branch corrected the flaky fractional-pixel layout assertion, produced a separate 166-second judge-first demo candidate, reconciled submission evidence, and passed the complete local release gate. With explicit owner direction, commit `95c15cf` was fast-forwarded and pushed to public `main`; YouTube and Devpost remained untouched.
 
+### 1 September 2026 — Public demo published and verified
+
+After explicit owner authorization, the 166-second narrated demo was published at <https://www.youtube.com/watch?v=cwXs5d_mGE0>. The public watch endpoint, correct title, duration, and 1080p HD availability were verified. Devpost remained untouched.
+
 ---
 
 ## 12. Current repository state
@@ -389,15 +396,16 @@ An isolated branch corrected the flaky fractional-pixel layout assertion, produc
 - Application source: complete and deployed at the verified no-login production URL
 - Approved spec: version 2.0 hardened
 - Approved implementation plan: version 2.0 hardened
-- Current task: `T11.5`, owner-controlled YouTube publication and signed-out verification
+- Current task: `T12.3`, final owner edit and Devpost field verification
 - Blockers: none
-- Owner action before submission: authorize the prepared demo upload, review the final description in their own voice, and separately authorize Devpost submission
+- Public demo: <https://www.youtube.com/watch?v=cwXs5d_mGE0>
+- Owner action before submission: review the final description in their own voice and separately authorize Devpost submission
 
 ---
 
 ## 13. Exact next action
 
-Keep the verified branch and both local demo versions intact. Do not publish the prepared judge-first video until the owner explicitly authorizes YouTube upload. After authorization, verify the public playback while signed out before adding its URL to the submission documents.
+Keep the verified branch and local demo versions intact. Give the Devpost description a final owner edit, verify the draft fields against the public application, repository, and YouTube links, and preserve the separate submission gate.
 
 Do not accept Devpost terms, edit the live Devpost submission, or submit the project without a separate explicit owner instruction.
 

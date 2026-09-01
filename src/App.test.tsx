@@ -9,7 +9,7 @@ afterEach(() => {
 });
 
 describe("single-screen document resolution workflow", () => {
-  it("introduces the live shipment through an accessible WebMCP landing flow", () => {
+  it("introduces the shipment demo through an accessible WebMCP landing flow", () => {
     render(<App />);
 
     expect(
@@ -19,7 +19,7 @@ describe("single-screen document resolution workflow", () => {
       }),
     ).toBeVisible();
     expect(
-      screen.getByRole("link", { name: /open the live shipment/i }),
+      screen.getByRole("link", { name: /open the shipment demo/i }),
     ).toHaveAttribute("href", "#workspace-demo");
     expect(
       screen.getByRole("link", { name: /see why webmcp matters/i }),

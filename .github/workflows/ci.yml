@@ -27,14 +27,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Upload generated lockfile
-        uses: actions/upload-artifact@v4
-        with:
-          name: generated-pnpm-lock
-          path: pnpm-lock.yaml
-          if-no-files-found: error
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm lint
@@ -48,5 +41,8 @@ jobs:
       - name: Install Chromium
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Run end-to-end smoke test
+      - name: Run end-to-end tests
         run: pnpm test:e2e
+
+      - name: Audit dependencies
+        run: pnpm audit
