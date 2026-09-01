@@ -34,7 +34,7 @@ The challenge build remains intentionally narrow:
 - visible human approval and confirmation checkpoints;
 - no backend, OCR, model API, persistence, external send, or embedded chatbot.
 
-The renamed product, screenshots, architecture, evaluation evidence, and submission materials are on public `main` at commit `1e9d9bd`. The six WebMCP tool names and authority behavior were intentionally unchanged.
+The renamed product, screenshots, architecture, evaluation evidence, and submission-polish materials are on public `main` through commit `95c15cf`. The six WebMCP tool names and authority behavior were intentionally unchanged.
 
 ---
 
@@ -101,7 +101,7 @@ corepack pnpm@10.15.1 audit --prod
 
 Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed, production build passed, 12/12 local Chromium journeys passed, the same 12/12 journeys passed against the anonymous production URL, and both audits reported no known vulnerabilities.
 
-On 1 September 2026, the isolated submission-polish branch repeated the local lint, 55-test Vitest, production-build, 12-journey Chromium, and dependency-audit gates successfully. Public `main` and the deployment remain unchanged until the owner authorizes integration.
+On 1 September 2026, submission-polish commit `95c15cf` repeated the lint, 55-test Vitest, production-build, 12-journey Chromium, and dependency-audit gates successfully on the merged `main` tree before it was pushed. The runtime application code was unchanged; hosting-platform status still requires a separate post-push verification.
 
 ---
 

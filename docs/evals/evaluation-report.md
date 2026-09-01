@@ -35,7 +35,7 @@ The repository contains focused coverage for these behaviors:
 
 Release-gate totals on 30 August 2026: 55 Vitest unit/component tests and 12 Chromium browser journeys passed from renamed public `main` at `1e9d9bd`; the same 12 journeys also passed against the anonymous production URL.
 
-On 1 September 2026, the submission-polish branch passed a fresh local gate: lint, all 55 Vitest tests, the production build, all 12 Chromium journeys, and the dependency audit. The branch also replaces an exact fractional-pixel phone-layout equality with a sub-pixel tolerance after the exact comparison proved flaky across repeated Chromium layouts. The public production evidence above remains the controlling deployed result until an owner-authorized merge and deployment.
+On 1 September 2026, public `main` commit `95c15cf` passed a fresh merged-result gate: lint, all 55 Vitest tests, the production build, all 12 Chromium journeys, and the dependency audit. That commit also replaces an exact fractional-pixel phone-layout equality with a sub-pixel tolerance after the exact comparison proved flaky across repeated Chromium layouts. The public production evidence above remains the controlling deployed result until the hosting platform's post-push state is reverified.
 
 ## Prompt-injection case
 

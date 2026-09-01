@@ -5,7 +5,7 @@
 **Memory version:** 2.1
 **Last durable update:** 1 September 2026
 **Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
-**Implementation state:** Renamed release is on public `main` and deployed without login protection; an isolated local branch contains the verified technical and submission-polish changes pending owner-directed integration
+**Implementation state:** Verified technical and submission-polish commit `95c15cf` is on public `main`; the previously verified no-login deployment requires a post-push hosting-state check before claiming the new repository head is deployed
 **Scope state:** Hardened, approved, and frozen
 
 This file is the durable handoff state for humans and coding agents. Read it before changing the repository. Transient execution evidence belongs in `CURRENT_PROGRESS.md`; detailed steps belong in the implementation plan.
@@ -378,7 +378,7 @@ The renamed repository and deployment became publicly accessible without login. 
 
 ### 1 September 2026 — Submission polish verified locally
 
-An isolated branch corrected the flaky fractional-pixel layout assertion, produced a separate 166-second judge-first demo candidate, reconciled submission evidence, and passed the complete local release gate. Public `main`, YouTube, and Devpost remain unchanged pending explicit owner direction.
+An isolated branch corrected the flaky fractional-pixel layout assertion, produced a separate 166-second judge-first demo candidate, reconciled submission evidence, and passed the complete local release gate. With explicit owner direction, commit `95c15cf` was fast-forwarded and pushed to public `main`; YouTube and Devpost remained untouched.
 
 ---
 

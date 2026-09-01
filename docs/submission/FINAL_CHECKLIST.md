@@ -29,10 +29,10 @@ Do not mark an item verified from memory. Record evidence next to it.
 |---|---|---|
 | `pnpm-lock.yaml` is generated and committed | verified | Renamed public `main` commit `1e9d9bd` |
 | Clean `pnpm install --frozen-lockfile` succeeds | verified | Pinned pnpm 10.15.1 frozen install exited 0 on 2026-08-30 |
-| `pnpm lint` exits 0 | verified | Fresh submission-polish branch run exited 0 on 2026-09-01 |
-| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on 2026-09-01 |
-| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on 2026-09-01 |
-| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on 2026-09-01 after installing the pinned browser binary |
+| `pnpm lint` exits 0 | verified | Merged public-`main` tree at `95c15cf` exited 0 on 2026-09-01 |
+| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on merged `main` on 2026-09-01 |
+| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on merged `main` on 2026-09-01 |
+| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on merged `main` on 2026-09-01 |
 | Prompt-injection isolation test passes | verified | Included in the 55-test Vitest run on 2026-09-01 |
 | Complete browser journey passes | verified | Automated and native production journeys reached 7/9 with two pending external |
 | Locked WebMCP edit journey passes | verified | Automated and native production calls returned `DOCUMENT_LOCKED` |
