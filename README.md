@@ -116,6 +116,10 @@ Key implementation boundaries:
 
 No authentication, credentials, uploads, or paid services are required. Unsupported browsers retain the complete manual workflow and show an accurate capability notice; the application never simulates WebMCP availability.
 
+## Demo status
+
+A **2 minute 46 second** judge-first demo has been verified locally. It opens with a live native WebMCP tool call, then shows the exporter-owned, external-issuer, and human-judgement paths through the final **7 of 9 checks passing** result. The video has not been published; a public YouTube link will be added only after explicit owner approval and a signed-out playback check.
+
 ## Run locally
 
 ### Prerequisites

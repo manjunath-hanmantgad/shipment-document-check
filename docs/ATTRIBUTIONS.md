@@ -30,6 +30,8 @@ This file records every direct non-original dependency and asset used by Shipmen
 
 No third-party visual asset, logo, font, document template, photograph, illustration, sound, dataset, or real trade document is used.
 
+The local judge-first demonstration uses only captures of this project's fictional application and generated spoken narration. It contains no music, stock footage, third-party product footage, account screens, or real shipment data. The video remains a local review artefact and has not been uploaded.
+
 `docs/submission/assets/devpost-thumbnail.jpg` is an original 3:2 screenshot of this project's fictional, WebMCP-enabled application state. It contains no browser chrome, account information, real shipment data, or third-party media.
 
 The four JPEG images in `docs/screenshots/` are direct application captures at 1425 × 802 pixels. They show only this project's original interface and fictional shipment data, contain no browser chrome or account information, and were added as public README documentation rather than promotional mockups.
@@ -90,12 +92,12 @@ WebMCP tool definitions must be written for this application. Do not copy anothe
 
 ## Submission review
 
-Before the final submission tag:
+Before the final submission freeze:
 
 - [x] Commit and review `pnpm-lock.yaml`.
 - [x] Review transitive dependency licences and required notices.
 - [x] Confirm every direct dependency version matches the lockfile.
 - [x] Confirm every visual, sound, diagram, and document template is original or recorded.
-- [ ] Confirm the demonstration video uses no unlicensed music or footage.
-- [ ] Confirm no real trade document or identifying data exists in source, fixtures, screenshots, history, or deployment.
-- [ ] Confirm the public repository exposes this file and the root `LICENSE`.
+- [x] Confirm the demonstration video uses no unlicensed music or footage — original application capture and narration only; no music.
+- [x] Confirm no real trade document or identifying data exists in source, fixtures, screenshots, history, or deployment — synthetic-data and history scans completed on 2026-08-30.
+- [x] Confirm the public repository exposes this file and the root `LICENSE` — both returned anonymously after the repository rename.

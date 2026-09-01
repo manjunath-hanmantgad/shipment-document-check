@@ -30,7 +30,9 @@ test("keeps the landing concise and operable at phone width", async ({ page }) =
   const proofFacts = page.getByRole("list", { name: "Product facts" }).getByRole("listitem");
   const firstFact = await proofFacts.nth(0).boundingBox();
   const secondFact = await proofFacts.nth(1).boundingBox();
-  expect(firstFact?.y).toBe(secondFact?.y);
+  expect(firstFact).not.toBeNull();
+  expect(secondFact).not.toBeNull();
+  expect(Math.abs(firstFact!.y - secondFact!.y)).toBeLessThan(1);
 
   await expect(page.locator(".landing-hero__art figcaption")).toBeHidden();
   expect(

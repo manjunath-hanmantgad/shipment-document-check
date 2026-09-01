@@ -4,7 +4,7 @@
 
 **Public repository:** `manjunath-hanmantgad/shipment-document-check`
 
-**Snapshot date:** 30 August 2026
+**Snapshot date:** 1 September 2026
 
 **Scope version:** 2.0, finalized and frozen
 
@@ -12,7 +12,7 @@
 
 **Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
 
-**Completed through:** `T11.4`, plus a locally verified narrated demo candidate
+**Completed through:** `T11.4`, plus a locally verified 166-second judge-first narrated demo candidate
 
 **Known product-code blockers:** None
 
@@ -101,6 +101,8 @@ corepack pnpm@10.15.1 audit --prod
 
 Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed, production build passed, 12/12 local Chromium journeys passed, the same 12/12 journeys passed against the anonymous production URL, and both audits reported no known vulnerabilities.
 
+On 1 September 2026, the isolated submission-polish branch repeated the local lint, 55-test Vitest, production-build, 12-journey Chromium, and dependency-audit gates successfully. Public `main` and the deployment remain unchanged until the owner authorizes integration.
+
 ---
 
 ## 5. Task status
@@ -116,8 +118,8 @@ Observed results: frozen install passed, lint passed, 55/55 Vitest tests passed,
 
 ## 6. Exact next actions
 
-1. When the owner authorizes YouTube upload, publish the prepared 150.738-second narrated candidate and verify signed-out playback.
-2. Replace the remaining YouTube and final-tag placeholders.
+1. When the owner authorizes YouTube upload, publish the prepared 166-second judge-first narrated candidate and verify signed-out playback.
+2. Add the verified public YouTube URL to the submission documents; no bracketed URL or tag placeholders remain.
 3. Give the Devpost description a final owner edit so it is not submitted as untouched AI-assisted copy.
-4. Create and push the final submission tag only after every non-Devpost gate passes.
+4. Create and push an optional release tag only if the owner explicitly requests one.
 5. Do not accept terms, alter the Devpost draft, or submit anything on Devpost without a separate explicit owner instruction.

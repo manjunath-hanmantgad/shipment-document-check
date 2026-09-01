@@ -3,9 +3,9 @@
 **Project:** Shipment Document Check
 **Repository:** `manjunath-hanmantgad/shipment-document-check`
 **Memory version:** 2.1
-**Last durable update:** 30 August 2026
+**Last durable update:** 1 September 2026
 **Current task:** `T11.5 — Publish and verify the prepared YouTube demo when the owner authorizes upload`
-**Implementation state:** Renamed release merged to public `main`, deployed without login protection, and verified through native WebMCP and public browser journeys
+**Implementation state:** Renamed release is on public `main` and deployed without login protection; an isolated local branch contains the verified technical and submission-polish changes pending owner-directed integration
 **Scope state:** Hardened, approved, and frozen
 
 This file is the durable handoff state for humans and coding agents. Read it before changing the repository. Transient execution evidence belongs in `CURRENT_PROGRESS.md`; detailed steps belong in the implementation plan.
@@ -316,7 +316,7 @@ Deadline:
 - 4 September 2026 at 1:30 AM IST
 - Internal freeze: 3 September 2026 at 8:00 PM IST
 
-Current repository visibility is private. Do not mark the public-repository requirement complete until metadata verifies the change and licence detection.
+The repository is public, privacy-sanitized, and exposes an MIT licence. Anonymous repository metadata, README access, and licence detection were verified on 30 August 2026.
 
 ---
 
@@ -372,32 +372,34 @@ Local commit `e7bf80d` pins the nested Playwright preview command to pnpm 10.15.
 
 Release-readiness work may continue, but Devpost terms acceptance and the final Submit action are prohibited until the owner gives a separate explicit instruction.
 
+### 30 August 2026 — Public release and native journey verified
+
+The renamed repository and deployment became publicly accessible without login. The native six-tool WebMCP journey, six prompt evals, manual fallback, reset, privacy-sanitized history, and final 7-of-9 result were verified.
+
+### 1 September 2026 — Submission polish verified locally
+
+An isolated branch corrected the flaky fractional-pixel layout assertion, produced a separate 166-second judge-first demo candidate, reconciled submission evidence, and passed the complete local release gate. Public `main`, YouTube, and Devpost remain unchanged pending explicit owner direction.
+
 ---
 
 ## 12. Current repository state
 
 - Default branch: `main`
-- Visibility: private
-- Application source: not started
+- Visibility: public
+- Application source: complete and deployed at the verified no-login production URL
 - Approved spec: version 2.0 hardened
 - Approved implementation plan: version 2.0 hardened
-- Current task: `T03`
+- Current task: `T11.5`, owner-controlled YouTube publication and signed-out verification
 - Blockers: none
-- Owner action before submission: make repository public and verify licence detection
+- Owner action before submission: authorize the prepared demo upload, review the final description in their own voice, and separately authorize Devpost submission
 
 ---
 
 ## 13. Exact next action
 
-Execute `T03 — Establish repository compliance baseline`.
+Keep the verified branch and both local demo versions intact. Do not publish the prepared judge-first video until the owner explicitly authorizes YouTube upload. After authorization, verify the public playback while signed out before adding its URL to the submission documents.
 
-Do not scaffold the React application until:
-
-- README exists;
-- MIT licence exists;
-- hygiene and attribution files exist;
-- repository requirements are verified;
-- progress and tracker state are updated.
+Do not accept Devpost terms, edit the live Devpost submission, or submit the project without a separate explicit owner instruction.
 
 ---
 

@@ -29,14 +29,14 @@ Do not mark an item verified from memory. Record evidence next to it.
 |---|---|---|
 | `pnpm-lock.yaml` is generated and committed | verified | Renamed public `main` commit `1e9d9bd` |
 | Clean `pnpm install --frozen-lockfile` succeeds | verified | Pinned pnpm 10.15.1 frozen install exited 0 on 2026-08-30 |
-| `pnpm lint` exits 0 | verified | Fresh merged-`main` run exited 0 on 2026-08-30 |
-| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on 2026-08-30 |
-| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on 2026-08-30 |
-| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on 2026-08-30 |
-| Prompt-injection isolation test passes | verified | Included in the 55-test Vitest run on 2026-08-30 |
+| `pnpm lint` exits 0 | verified | Fresh submission-polish branch run exited 0 on 2026-09-01 |
+| `pnpm test:run` exits 0 | verified | 4 files and 55 tests passed on 2026-09-01 |
+| `pnpm build` exits 0 | verified | TypeScript and Vite 7.3.6 production build exited 0 on 2026-09-01 |
+| `pnpm test:e2e` exits 0 | verified | 12 Chromium journeys passed on 2026-09-01 after installing the pinned browser binary |
+| Prompt-injection isolation test passes | verified | Included in the 55-test Vitest run on 2026-09-01 |
 | Complete browser journey passes | verified | Automated and native production journeys reached 7/9 with two pending external |
 | Locked WebMCP edit journey passes | verified | Automated and native production calls returned `DOCUMENT_LOCKED` |
-| Production dependency audit is clean | verified | `pnpm audit` and `pnpm audit --prod` reported no known vulnerabilities on 2026-08-30 |
+| Production dependency audit is clean | verified | Fresh `pnpm audit` reported no known vulnerabilities on 2026-09-01; prior production-only audit also clean |
 | GitHub Actions CI rerun | not-applicable | Monthly Actions quota exhausted; owner approved local verification instead. Run later only if quota returns. |
 
 A local clean-checkout failure blocks submission until fixed. Hosted CI is useful evidence, but it is not a challenge requirement and is not allowed to become a fabricated blocker after the owner explicitly deferred it.
@@ -53,7 +53,7 @@ A local clean-checkout failure blocks submission until fixed. Hosted CI is usefu
 | Direct B/L correction returns `DOCUMENT_LOCKED` | verified | Observed native production call; locked source unchanged |
 | Manual fallback works without WebMCP | verified | Automated browser fallback journey passed; production bundle matched the tested build byte-for-byte |
 | Reset works on deployed URL | verified | Native production reset restored the five-finding initial state |
-| Fresh reader can follow README without assistance | pending | Final link/read-through after video URL and release tag are added |
+| Fresh reader can follow README without assistance | verified | README judge path, setup, architecture, screenshots, evidence links, and honest unpublished-video status reviewed on 2026-09-01 |
 
 ## 4. Six natural-language evals
 
@@ -101,8 +101,8 @@ Draft: `docs/submission/DEVPOST_DRAFT.md`
 - [x] Create a 3:2 project thumbnail from the real WebMCP-enabled application.
 - [x] Replace the verified live URL after anonymous production verification.
 - [x] Replace the public repository URL after signed-out verification.
-- [ ] Replace `[T11_VERIFIED_YOUTUBE_URL]` only after video is public.
-- [ ] Remove every bracketed placeholder before submission.
+- [ ] Add the public YouTube URL only after an owner-authorized upload and signed-out playback check.
+- [x] Remove bracketed submission placeholders from the draft and checklist.
 
 AI-use safeguards from the signed-in submission guidance:
 
@@ -124,8 +124,8 @@ Script: `docs/submission/DEMO_SCRIPT.md`
 | External requests shown as unsent drafts | verified locally | Carrier and authority requests remain unsent |
 | Human judgement and rationale shown | verified locally | Staged acceptance and rationale are visible before confirmation |
 | Final 7-pass / 2-pending-external state shown | verified locally | Final summary is visible before the outro |
-| Duration under three minutes | verified locally | 150.738 seconds |
-| Audio narration is present | verified locally | AAC mono, 48 kHz; waveform checked across the full candidate |
+| Duration under three minutes | verified locally | 166 seconds (2:46) |
+| Audio narration is present | verified locally | AAC mono, 96 kHz; waveform checked across the full candidate |
 | Video is public on YouTube | pending | Verify signed-out |
 | No copyrighted music, unnecessary third-party trademarks, or private account data | verified locally | Narration only; fictional product captures; no account screens |
 
@@ -136,8 +136,8 @@ Fill only after verification:
 ```text
 Live application: https://shipment-document-check-mhanmantfreebi-1870.vercel.app/
 Public repository: https://github.com/manjunath-hanmantgad/shipment-document-check
-Public YouTube demo: [T11_VERIFIED_YOUTUBE_URL]
-Submission tag: [T12_FINAL_TAG]
+Public YouTube demo: Not published — requires explicit owner authorization and signed-out verification.
+Release tag: Deferred unless the owner explicitly requests one; it is not a challenge submission requirement.
 ```
 
 ## 9. Final freeze
@@ -153,9 +153,9 @@ Before pressing Submit:
 - [ ] Verify video signed-out.
 - [x] Verify all six WebMCP tools in the native environment.
 - [x] Verify all six agent eval observations are recorded.
-- [x] Search the repository for secrets, private data, `TODO`, `TBD`, and submission placeholders; only the intentional YouTube and final-tag placeholders remain.
+- [x] Search the repository for secrets, private data, `TODO`, `TBD`, and bracketed submission placeholders; no active submission placeholders remain.
 - [x] Confirm all assets and dependencies are original or correctly attributed.
-- [ ] Create final submission tag.
+- [ ] Create an optional release tag only if the owner explicitly requests one.
 - [ ] Complete Devpost submission before internal freeze.
 - [ ] Freeze judged repository/deployment/submission artefacts.
 
